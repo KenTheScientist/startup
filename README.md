@@ -2,12 +2,11 @@
 
 [My Notes](notes.md)
 
-Co-Budget is a shared budget application meant for families and couples. Designed for households to collaboratively track expenses and manage group budgets. The backend service manages logins and authentication as well as storing the budgets in a database. Websockets will be used to update and notify users that are in the same "room" (shared budget). For example, "Jenny just spent $25 on a T-Shirt." 
-
+Co-Budget is a shared budget application built for families and couples to collaboratively track expenses and manage group budgets.
 
 ### Elevator pitch
 
-Co-Budget allows families and couples to collaboratively track expenses and manage group budgets. Users can create a budget and invite other users to join. Users can add income or expenses to the budget as well as viewing the total amount of the budget and the amount left. 
+Have you ever had a budget, but then someone else in the family spent money without telling you? Co-Budget is a shared budget application built for families and couples to collaboratively track expenses and manage group budgets. Users can create budgets, add funds, and track expenses. Users within the same budget can see when other people spend money. With Co-Budget, everyone can stay on the same page when it comes to family finances!
 
 ### Design
 
