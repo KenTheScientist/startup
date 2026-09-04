@@ -6,7 +6,7 @@ Co-Budget is a shared budget application built for families and couples to colla
 
 ### Elevator pitch
 
-Have you ever had a budget, but then someone else in the family spent money without telling you? **Co-Budget** is a shared budget application built for families and couples to collaboratively track expenses and manage group budgets. Users can create budgets, add funds, and track expenses. Users within the same budget can see when other people spend money. With **Co-Budget**, everyone can stay on the same page when it comes to family finances!
+Have you ever had a budget, but then someone else in the family spent money without telling you? **Co-Budget** is a shared budget application built for families and couples to collaboratively track expenses and manage group budgets. Users can create budgets, add funds, and track expenses together. Users within the same budget can see when other people spend money. With **Co-Budget**, everyone can stay on the same page when it comes to family finances!
 
 ### Design
 
@@ -21,11 +21,17 @@ sequenceDiagram
     You->>Website: Replace this with your design
 ```
 
+
+
+
+
 ### Key features
 
 - Describe your key feature
 - Describe your key feature
 - Describe your key feature
+
+
 
 ### Technologies
 
@@ -37,6 +43,8 @@ I am going to use the required technologies in the following ways.
 - **Service** - Description here
 - **DB/Login** - Description here
 - **WebSocket** - Description here
+
+
 
 ## 🚀 Specification Deliverable
 
@@ -52,6 +60,8 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 - [ ] Description of how you will use each technology including your 3rd party API and use of WebSocket
 - [ ] One or more rough sketches of your application. Images must be embedded in this file using Markdown image references.
 
+
+
 ## 🚀 AWS deliverable
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
@@ -59,6 +69,8 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 - [ ] **Rented EC2 server** - I did not complete this part of the deliverable.
 - [ ] **Leased domain name** - I did not complete this part of the deliverable.
 - [ ] **Server accessible** from my domain: [https://yourdomainnamehere.click](https://yourdomainnamehere.click) - I did not complete this part of the deliverable.
+
+
 
 ## 🚀 HTML deliverable
 
@@ -75,6 +87,8 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 - [ ] **DB data placeholder** - I did not complete this part of the deliverable.
 - [ ] **WebSocket placeholder** - I did not complete this part of the deliverable.
 
+
+
 ## 🚀 CSS deliverable
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
@@ -87,6 +101,8 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 - [ ] **Use of a imported font** - I did not complete this part of the deliverable.
 - [ ] **Use of different types of selectors including element, class, ID, and pseudo selectors** - I did not complete this part of the deliverable.
 
+
+
 ## 🚀 React part 1: Routing deliverable
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
@@ -96,6 +112,8 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 - [ ] **Components** - I did not complete this part of the deliverable.
 - [ ] **Router** - I did not complete this part of the deliverable.
 
+
+
 ## 🚀 React part 2: Reactivity deliverable
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
@@ -103,6 +121,8 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 - [ ] I completed the prerequisites for this deliverable (Simon deployed, GitHub link, Git commits)
 - [ ] **All functionality implemented or mocked out** - I did not complete this part of the deliverable.
 - [ ] **Hooks** - I did not complete this part of the deliverable.
+
+
 
 ## 🚀 Service deliverable
 
@@ -117,6 +137,8 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 - [ ] **Supports registration, login, logout, and restricted endpoint** - I did not complete this part of the deliverable.
 - [ ] **Uses BCrypt to hash passwords** - I did not complete this part of the deliverable.
 
+
+
 ## 🚀 DB deliverable
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
@@ -124,6 +146,8 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 - [ ] I completed the prerequisites for this deliverable (Simon deployed, GitHub link, Git commits)
 - [ ] **Stores data in MongoDB** - I did not complete this part of the deliverable.
 - [ ] **Stores credentials in MongoDB** - I did not complete this part of the deliverable.
+
+
 
 ## 🚀 WebSocket deliverable
 
