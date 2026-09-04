@@ -6,7 +6,7 @@ Co-Budget is a shared budget application built for families and couples to colla
 
 ### Elevator pitch
 
-Have you ever had a budget, but then someone else in the family spent money without telling you? Co-Budget is a shared budget application built for families and couples to collaboratively track expenses and manage group budgets. Users can create budgets, add funds, and track expenses. Users within the same budget can see when other people spend money. With Co-Budget, everyone can stay on the same page when it comes to family finances!
+Have you ever had a budget, but then someone else in the family spent money without telling you? **Co-Budget** is a shared budget application built for families and couples to collaboratively track expenses and manage group budgets. Users can create budgets, add funds, and track expenses. Users within the same budget can see when other people spend money. With **Co-Budget**, everyone can stay on the same page when it comes to family finances!
 
 ### Design
 
