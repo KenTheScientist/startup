@@ -22,16 +22,70 @@ With **Co-Budget**, everyone can stay on the same page when it comes to family f
 
 ### Account Creation Diagram
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-
 ```mermaid
 sequenceDiagram
-    actor You
-    actor Website
-    You->>Website: Replace this with your design
+    actor Sarah
+    participant Server
+    participant MongoDB@{ "type" : "database" }
+
+    Sarah ->> Server: Create account
+    Server ->> MongoDB: Check for existing account
+    alt Account exists
+        MongoDB ->> Server: account
+        Server ->> Sarah: [403: Username already exists]
+    end
+    Server ->> MongoDB: Create account entry
+    Server ->> Sarah: [200: Account created]\nAuthToken 39a3fb
 ```
 
 
+
+### Co-Budget Diagram
+
+Dashed arrows indicate Websocket asynchronous communication.
+
+AuthTokens will be used to authenticate users who are logged in. For conciseness, AuthTokens and verification are not mentioned in this diagram.
+
+```mermaid
+sequenceDiagram
+    actor Jim
+    actor Sarah
+    participant Server
+    participant MongoDB@{ "type" : "database" }
+
+    # Sarah creates a budget
+    Sarah ->> Server: Create budget "Home"
+    Server ->> MongoDB: Create budget entry "Home"\nID: XLKDN\nOwner: Sarah
+    Server ->> Sarah: [200: Budget "Home" created]\n{Join code: XLKDN}
+
+    # Jim joins the budget
+    Jim ->> Server: Join budget XLKDN
+    Server ->> MongoDB: Retrieve budget entry with ID XLKDN
+    MongoDB ->> Server: {budget data}
+    Server ->> Jim: [200: Budget "Home" joined]\n{budget data}
+    Server -->> Sarah: Notification: "Jim joined the Home budget"
+
+    # Sarah creates an envelope
+    Sarah ->> Server: Create envelope "Vacation"
+    Server ->> MongoDB: Create envelope entry "Vacation"
+    Server ->> Sarah: [200: Envelope "Vacation" created]
+    Server -->> Jim: Notification: "Sarah created a Vacation envelope"
+    Server -->> Jim: {envelope data}
+
+    # Jim adds money to the envelope
+    Jim ->> Server: Add $1000 to envelope "Vacation"
+    Server ->> MongoDB: Create fill entry
+    Server ->> Jim: [200: Successfully added funds]
+    Server -->> Sarah: Notification: "Jim added $1000 to the Vacation envelope"
+    Server -->> Sarah: {envelope data}
+
+    # Sarah adds an expense
+    Sarah ->> Server: New expense: "Plane Tickets" worth $600 for "Vacation"
+    Server ->> MongoDB: Create expense entry "Plane Tickets"
+    Server ->> Sarah: [200: Expense "Plane Tickets" created]
+    Server -->> Jim: Notification: "Sarah spent $600 for Plane Tickets"
+    Server -->> Jim: {envelope data}
+```
 
 
 
@@ -54,23 +108,18 @@ I am going to use the required technologies in the following ways.
 - **DB/Login** - Description here
 - **WebSocket** - Description here
 
-
-
 ## 🚀 Specification Deliverable
 
-> [!NOTE]
-> Fill in this sections as the submission artifact for this deliverable. You can refer to this [example](https://github.com/webprogramming260/startup-example/blob/main/README.md) for inspiration.
+[example](https://github.com/webprogramming260/startup-example/blob/main/README.md)
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
-- [ ] I completed the prerequisites for this deliverable (Git commit requirement)
-- [ ] Proper use of Markdown
-- [ ] A concise and compelling elevator pitch
-- [ ] Description of key features
+- [X] I completed the prerequisites for this deliverable (Git commit requirement)
+- [X] Proper use of Markdown
+- [X] A concise and compelling elevator pitch
+- [X] Description of key features
 - [ ] Description of how you will use each technology including your 3rd party API and use of WebSocket
 - [ ] One or more rough sketches of your application. Images must be embedded in this file using Markdown image references.
-
-
 
 ## 🚀 AWS deliverable
 
@@ -79,8 +128,6 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 - [ ] **Rented EC2 server** - I did not complete this part of the deliverable.
 - [ ] **Leased domain name** - I did not complete this part of the deliverable.
 - [ ] **Server accessible** from my domain: [https://yourdomainnamehere.click](https://yourdomainnamehere.click) - I did not complete this part of the deliverable.
-
-
 
 ## 🚀 HTML deliverable
 
@@ -97,8 +144,6 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 - [ ] **DB data placeholder** - I did not complete this part of the deliverable.
 - [ ] **WebSocket placeholder** - I did not complete this part of the deliverable.
 
-
-
 ## 🚀 CSS deliverable
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
@@ -111,8 +156,6 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 - [ ] **Use of a imported font** - I did not complete this part of the deliverable.
 - [ ] **Use of different types of selectors including element, class, ID, and pseudo selectors** - I did not complete this part of the deliverable.
 
-
-
 ## 🚀 React part 1: Routing deliverable
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
@@ -122,8 +165,6 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 - [ ] **Components** - I did not complete this part of the deliverable.
 - [ ] **Router** - I did not complete this part of the deliverable.
 
-
-
 ## 🚀 React part 2: Reactivity deliverable
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
@@ -131,8 +172,6 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 - [ ] I completed the prerequisites for this deliverable (Simon deployed, GitHub link, Git commits)
 - [ ] **All functionality implemented or mocked out** - I did not complete this part of the deliverable.
 - [ ] **Hooks** - I did not complete this part of the deliverable.
-
-
 
 ## 🚀 Service deliverable
 
@@ -147,8 +186,6 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 - [ ] **Supports registration, login, logout, and restricted endpoint** - I did not complete this part of the deliverable.
 - [ ] **Uses BCrypt to hash passwords** - I did not complete this part of the deliverable.
 
-
-
 ## 🚀 DB deliverable
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
@@ -156,8 +193,6 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 - [ ] I completed the prerequisites for this deliverable (Simon deployed, GitHub link, Git commits)
 - [ ] **Stores data in MongoDB** - I did not complete this part of the deliverable.
 - [ ] **Stores credentials in MongoDB** - I did not complete this part of the deliverable.
-
-
 
 ## 🚀 WebSocket deliverable
 
