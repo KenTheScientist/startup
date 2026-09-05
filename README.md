@@ -16,7 +16,11 @@ With **Co-Budget**, everyone can stay on the same page when it comes to family f
 
 ### Design
 
-![Design image](placeholder.png)
+![Icon](icon.png)
+
+
+
+### Account Creation Diagram
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 
@@ -33,11 +37,11 @@ sequenceDiagram
 
 ### Key features
 
-- Describe your key feature
-- Describe your key feature
-- Describe your key feature
-
-
+- Secure account creation and login
+- Adding labelled envelopes to organize total funds
+- Filling envelopes and tracking expenses
+- Cloud-based sync and budget sharing
+- Real-time updates for all users
 
 ### Technologies
 
