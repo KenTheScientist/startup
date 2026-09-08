@@ -119,7 +119,7 @@ I am going to use the required technologies in the following ways.
 - **HTML** - Uses HTML to structure the pages. There will be several pages, including login, budget selection, envelope management, and activity tracking, to name a few. Images, links, and text will be used to create the initial pages.
 - **CSS** - Uses CSS to style the pages. Styles will remain consisten throughout the application. Flexbox and grid will be used to create the layout of the pages.
 - **React** - Uses React to service the login menu, popup menus (e.g. "New Transaction"), navigation, and dropdown menus. 
-- **Service** - Uses a server to host the application's backend logic. Used for login, registration, budget creation, joining budgets, adding funds, and more.
+- **Service** - Uses a server to host the application's backend logic. Used for login, registration, budget creation, joining budgets, adding funds, and more. For the API, I will use QR Tag (https://www.qrtag.net/api/) to generate QR codes. This way, users can join a budget without having to enter a lengthy join code.
 - **DB/Login** - Uses MongoDB to store user accounts and login information. Credentials securely stored in the database. Budgets, envelopes, and history are stored in the database.
 - **WebSocket** - Uses WebSocket to send and receive real-time updates to all users in a budget. This is used to notify users when other people join a budget, add funds to an envelope, spend money from an envelope, create a new envelope, or delete an envelope.
 
