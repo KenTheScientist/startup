@@ -1,6 +1,8 @@
 # Co-Budget
 
-[My Notes](notes.md)
+[Repository](https://github.com/KenTheScientist/startup)
+
+[My Notes](notes.md) 
 
 Co-Budget is a shared budget application built for families and couples to collaboratively track expenses and manage group budgets.
 
@@ -47,7 +49,7 @@ sequenceDiagram
         Server ->> Sarah: [403: Username already exists]
     end
     Server ->> MongoDB: Create account entry
-    Server ->> Sarah: [200: Account created]\nAuthToken 39a3fb
+    Server ->> Sarah: [200: Account created] AuthToken 39a3fb
 ```
 
 
@@ -67,14 +69,14 @@ sequenceDiagram
 
     # Sarah creates a budget
     Sarah ->> Server: Create budget "Home"
-    Server ->> MongoDB: Create budget entry "Home"\nID: XLKDN\nOwner: Sarah
-    Server ->> Sarah: [200: Budget "Home" created]\n{Join code: XLKDN}
+    Server ->> MongoDB: Create budget entry "Home" ID: XLKDN Owner: Sarah
+    Server ->> Sarah: [200: Budget "Home" created] {Join code: XLKDN}
 
     # Jim joins the budget
     Jim ->> Server: Join budget XLKDN
     Server ->> MongoDB: Retrieve budget entry with ID XLKDN
     MongoDB ->> Server: {budget data}
-    Server ->> Jim: [200: Budget "Home" joined]\n{budget data}
+    Server ->> Jim: [200: Budget "Home" joined] {budget data}
     Server -->> Sarah: Notification: "Jim joined the Home budget"
 
     # Sarah creates an envelope
