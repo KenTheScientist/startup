@@ -1,4 +1,4 @@
-# Co-Budget
+# ngCo-Budget
 
 [My Notes](notes.md)
 
@@ -23,6 +23,7 @@ With **Co-Budget**, everyone can stay on the same page when it comes to family f
 The sketch above is rudimentary, but it shows the basic idea of the application. A user will have multiple budgets, and each budget will have multiple envelopes. Envelopes are the containers for the money. Users can add money to envelopes, and they can spend money from envelopes. 
 
 Users can see when other people (even in real time thanks to websockets):
+
 - Join a budget
 - Add money to envelopes
 - Spend money from envelopes
@@ -107,17 +108,18 @@ sequenceDiagram
 - Filling envelopes and tracking expenses
 - Cloud-based sync and budget sharing
 - Real-time updates for all users
+- QR Code sharing to allow users to join a budget without having to enter the join code
 
 ### Technologies
 
 I am going to use the required technologies in the following ways.
 
-- **HTML** - Description here
-- **CSS** - Description here
-- **React** - Description here
-- **Service** - Description here
-- **DB/Login** - Description here
-- **WebSocket** - Description here
+- **HTML** - Uses HTML to structure the pages. There will be several pages, including login, budget selection, envelope management, and activity tracking, to name a few. Images, links, and text will be used to create the initial pages.
+- **CSS** - Uses CSS to style the pages. Styles will remain consisten throughout the application. Flexbox and grid will be used to create the layout of the pages.
+- **React** - Uses React to service the login menu, popup menus (e.g. "New Transaction"), navigation, and dropdown menus. 
+- **Service** - Uses a server to host the application's backend logic. Used for login, registration, budget creation, joining budgets, adding funds, and more.
+- **DB/Login** - Uses MongoDB to store user accounts and login information. Credentials securely stored in the database. Budgets, envelopes, and history are stored in the database.
+- **WebSocket** - Uses WebSocket to send and receive real-time updates to all users in a budget. This is used to notify users when other people join a budget, add funds to an envelope, spend money from an envelope, create a new envelope, or delete an envelope.
 
 ## 🚀 Specification Deliverable
 
@@ -125,12 +127,12 @@ I am going to use the required technologies in the following ways.
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
-- [X] I completed the prerequisites for this deliverable (Git commit requirement)
-- [X] Proper use of Markdown
-- [X] A concise and compelling elevator pitch
-- [X] Description of key features
-- [ ] Description of how you will use each technology including your 3rd party API and use of WebSocket
-- [ ] One or more rough sketches of your application. Images must be embedded in this file using Markdown image references.
+- [x] I completed the prerequisites for this deliverable (Git commit requirement)
+- [x] Proper use of Markdown
+- [x] A concise and compelling elevator pitch
+- [x] Description of key features
+- [x] Description of how you will use each technology including your 3rd party API and use of WebSocket
+- [x] One or more rough sketches of your application. Images must be embedded in this file using Markdown image references.
 
 ## 🚀 AWS deliverable
 
