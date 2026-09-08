@@ -1,4 +1,4 @@
-# ngCo-Budget
+# Co-Budget
 
 [My Notes](notes.md)
 
