@@ -18,9 +18,9 @@ With **Co-Budget**, everyone can stay on the same page when it comes to family f
 
 ### Design
 
-![Icon](assets/logo.png)
+![Icon](src/assets/logo.png)
 
-![Design](assets/design.png)
+![Design](src/assets/design.png)
 
 The sketch above is rudimentary, but it shows the basic idea of the application. A user will have multiple budgets, and each budget will have multiple envelopes. Envelopes are the containers for the money. Users can add money to envelopes, and they can spend money from envelopes. 
 
