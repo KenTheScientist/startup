@@ -10,10 +10,25 @@
       <h1>
         <img src="assets/logo.png" alt="Co-Budget logo" height="128"/>
       </h1>
+      <nav>
+        <menu>
+          <li><a href="index.html">Login</a></li>
+          <li><a href="budgets.html">Budgets</a></li>
+          <li><a href="envelopes.html">Envelopes</a></li>
+          <li><a href="activity.html">Activity</a></li>
+          <li><a href="members.html">Members</a></li>
+        </menu>
+      </nav>
+      <!-- Login placeholder: user name display -->
+      <div>User: <span>Ken Thomson</span> <a href="index.html">Logout</a></div>
     </header>
+
     <main>
+      <p><a href="budgets.html">Back to Budgets</a></p>
       <h2>Members</h2>
-      <p>Members of the budget</p>
+      <p>People in this budget can add envelopes, fill them, and record expenses. Share the join code or QR code to invite someone.</p>
+
+      <!-- Database data placeholder -->
       <table>
         <thead>
           <tr>
@@ -21,6 +36,38 @@
             <th>Role</th>
           </tr>
         </thead>
+        <tbody>
+          <tr>
+            <td>Sarah</td>
+            <td>Owner</td>
+          </tr>
+          <tr>
+            <td>Jim</td>
+            <td>Member</td>
+          </tr>
+        </tbody>
       </table>
+
+      <section>
+        <h3>Join this budget</h3>
+        <p>Join code: XLKDN</p>
+        <!-- Third party service placeholder: QR Tag API -->
+        <p>QR code from QR Tag API Example</p>
+        <img
+          src="assets/qr_code_example.png"
+          alt="QR code to join the Home budget"
+          width="180"
+          height="180"
+        />
+      </section>
+
+      <!-- WebSocket data placeholder -->
+      <section>
+        <h3>Live updates</h3>
+        <ul>
+          <li>Jim joined the Home budget</li>
+        </ul>
+      </section>
+    </main>
   </body>
 </html>
