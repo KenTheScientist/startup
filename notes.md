@@ -18,7 +18,12 @@ Interesting things I have learned about AWS:
 
 ## HTML
 
-Interesting things I have learned about HTML
+Interesting things I have learned about HTML:
+- HTML is a markup language for creating web pages.
+- HTML elements are the building blocks of HTML pages.
+- Attributes provide additional information about elements.
+- Images, links, and videos can be embedded in HTML pages.
+- All sorts of inputs are possible and default values can be set.
 
 ## React
 
