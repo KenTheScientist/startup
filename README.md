@@ -148,16 +148,16 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
-- [ ] I completed the prerequisites for this deliverable (Simon deployed, GitHub link, Git commits)
-- [ ] **HTML pages** - I did not complete this part of the deliverable.
-- [ ] **Proper HTML element usage** - I did not complete this part of the deliverable.
-- [ ] **Links** - I did not complete this part of the deliverable.
-- [ ] **Text** - I did not complete this part of the deliverable.
-- [ ] **3rd party API placeholder** - I did not complete this part of the deliverable.
-- [ ] **Images** - I did not complete this part of the deliverable.
-- [ ] **Login placeholder** - I did not complete this part of the deliverable.
-- [ ] **DB data placeholder** - I did not complete this part of the deliverable.
-- [ ] **WebSocket placeholder** - I did not complete this part of the deliverable.
+- [x] I completed the prerequisites for this deliverable (Simon deployed, GitHub link, Git commits)
+- [x] **HTML pages** - Five HTML pages were created for this application. These pages are index.html, budgets.html, envelopes.html, activity.html, and members.html.
+- [x] **Proper HTML element usage** - I used the appropriate HTML elements for the pages, including BODY, NAV, MAIN, HEADER, FOOTER.
+- [x] **Links** - I used links to navigate between pages where it makes sense to do so.
+- [x] **Text** - I used text to display content on the pages. Each page has a unique title, description, and content.
+- [x] **3rd party API placeholder** - In the members.html page, I put a placeholder for a QR code from the QR Tag API. QR codes will be generated using the QR Tag API.
+- [x] **Images** - I used images to display the logo on the pages. Envelopes are displayed as icons on the envelopes.html page.
+- [x] **Login placeholder** - In the index.html page, I put a placeholder for a login form. This form will be used to login to the application. The current user is displayed in the header of each page.
+- [x] **DB data placeholder** - In the budgets.html, envelopes.html, and activity.html pages, I put a placeholder for the database data. This data will be displayed from the database.
+- [x] **WebSocket placeholder** - In the logged-in pages, I put a placeholder for WebSocket realtime notifications.
 
 ## 🚀 CSS deliverable
 
