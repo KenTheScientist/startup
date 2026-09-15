@@ -10,14 +10,85 @@
       <h1>
         <img src="assets/logo.png" alt="Co-Budget logo" height="128"/>
       </h1>
+      <nav>
+        <menu>
+          <li><a href="index.html">Login</a></li>
+          <li><a href="budgets.html">Budgets</a></li>
+          <li><a href="envelopes.html">Envelopes</a></li>
+          <li><a href="activity.html">Activity</a></li>
+          <li><a href="members.html">Members</a></li>
+        </menu>
+      </nav>
+      <!-- Login placeholder: user name display -->
+      <div>User: <span>Ken Thomson</span> <a href="index.html">Logout</a></div>
     </header>
+
     <main>
-      <h2>Your Envelopes</h2>
-      <p>Select an envelope to view or edit its balance, or create a new one.</p>
+      <p><a href="budgets.html">Back to Budgets</a></p>
+      <h2>Home Budget</h2>
+      <p>Total funds: $1,350</p>
+      <p>Envelopes hold money for a category. Add funds or record an expense so everyone can see the balance.</p>
+
+      <!-- Database data placeholder -->
+      <article>
+        <img src="assets/envelope.png" alt="Envelope" width="40" height="40" />
+        <h3>Groceries</h3>
+        <p>$300 / $400</p>
+        <progress value="300" max="400"></progress>
+        <button type="button">-</button>
+        <button type="button">+</button>
+      </article>
+
+      <article>
+        <img src="assets/envelope.png" alt="Envelope" width="40" height="40" />
+        <h3>Vacation</h3>
+        <p>$200 / $300</p>
+        <progress value="200" max="300"></progress>
+        <button type="button">-</button>
+        <button type="button">+</button>
+      </article>
+
+      <form>
+        <fieldset>
+          <legend>New envelope</legend>
+          <label>Name <input type="text" placeholder="Vacation" /></label>
+          <button type="button">Create envelope</button>
+        </fieldset>
+      </form>
+
+      <form>
+        <fieldset>
+          <legend>Add funds</legend>
+          <label>Envelope <input type="text" placeholder="Vacation" /></label>
+          <label>Amount <input type="number" placeholder="1000" /></label>
+          <button type="button">Add</button>
+        </fieldset>
+      </form>
+
+      <form>
+        <fieldset>
+          <legend>New expense</legend>
+          <label>Label <input type="text" placeholder="Plane Tickets" /></label>
+          <label>Envelope <input type="text" placeholder="Vacation" /></label>
+          <label>Amount <input type="number" placeholder="600" /></label>
+          <button type="button">Spend</button>
+        </fieldset>
+      </form>
+
+      <!-- WebSocket data placeholder -->
+      <section>
+        <h3>Live updates</h3>
+        <ul>
+          <li>Sarah spent $600 for Plane Tickets</li>
+          <li>Jim added $1000 to the Vacation envelope</li>
+          <li>Sarah created a Vacation envelope</li>
+        </ul>
+      </section>
     </main>
+    
     <footer>
       <br>
-      <p>Project by Kenneth Thomson</p>
+      Project by Kenneth Thomson
       <br>
       <a href="https://github.com/KenTheScientist/startup">GitHub</a>
     </footer>
