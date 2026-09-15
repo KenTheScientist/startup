@@ -23,8 +23,72 @@
       <div>User: <span>Ken Thomson</span> <a href="index.html">Logout</a></div>
     </header>
 
-    
+    <main>
+      <h2>Your Budgets</h2>
+      <p>Select, create, or join a budget to manage envelopes.</p>
 
+      <!-- Database data placeholder -->
+      <table>
+        <caption>Budgets stored in the database</caption>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Join code</th>
+            <th>Owner</th>
+            <th>Members</th>
+            <th>Total funds</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><a href="envelopes.html">Home</a></td>
+            <td>XLKDN</td>
+            <td>Sarah</td>
+            <td>2</td>
+            <td>$1,350</td>
+          </tr>
+          <tr>
+            <td><a href="envelopes.html">Vacation Club</a></td>
+            <td>Q9T2M</td>
+            <td>Ken Thomson</td>
+            <td>1</td>
+            <td>$500</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <section>
+        <h3>Create a new budget</h3>
+        <form method="post" action="budgets.html">
+          <fieldset>
+            <legend>Create a new budget</legend>
+            <label>Name <input type="text" name="name" placeholder="Home" /></label>
+            <button type="submit">Create</button>
+          </fieldset>
+        </form>
+      </section>
+
+      <section>
+        <h3>Join a budget</h3>
+        <form method="post" action="budgets.html">
+          <fieldset>
+            <legend>Join a budget</legend>
+            <label>Join code <input type="text" name="join_code" placeholder="XLKDN" /></label>
+            <button type="submit">Join</button>
+          </fieldset>
+        </form>
+      </section>
+
+      <!-- WebSocket data placeholder -->
+      <section>
+        <h3>Live updates</h3>
+        <ul>
+          <li>Jim joined the Home budget</li>
+          <li>Sarah created the Home budget</li>
+        </ul>
+      </section>
+    </main>
+    
     <footer>
       <br>
       Project by Kenneth Thomson
