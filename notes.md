@@ -25,6 +25,15 @@ Interesting things I have learned about HTML:
 - Images, links, and videos can be embedded in HTML pages.
 - All sorts of inputs are possible and default values can be set.
 
+## CSS
+
+Interesting things I have learned about CSS:
+- CSS is a language for describing the presentation of a document written in HTML.
+- CSS can be used to style HTML elements.
+- CSS can be used to create animations.
+- Grid and Flexbox are powerful tools for layout.
+- CSS can apply different rules to different screen sizes.
+
 ## React
 
 Interesting things I have learned about React
