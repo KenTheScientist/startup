@@ -55,3 +55,45 @@ body {
 /* Keep header links white when hovered */
 #app-header a:hover { color: #fff; }
 
+/* Page body: fixed sidebar plus a flexible content column */
+.layout {
+  display: grid;
+  grid-template-columns: 220px minmax(0, 1fr);
+  flex: 1;
+  min-width: 0;
+}
+
+/* Sidebar: light background and a right border */
+nav {
+  background: #f7fbfa;
+  border-right: 1px solid var(--line);
+  padding: 1rem 0.75rem;
+}
+
+/* Sidebar menu: stacked links with no bullets */
+menu {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* Sidebar links: pill shape, teal text, no underline */
+nav a {
+  display: block;
+  padding: 0.55rem 0.85rem;
+  border-radius: 0.6rem;
+  color: var(--teal-deep);
+  font-weight: 700;
+  text-decoration: none;
+}
+
+/* Hovered or current page link: mint background */
+nav a:hover,
+nav a.active {
+  background: #d7f3ee;
+  color: var(--teal);
+}
+
