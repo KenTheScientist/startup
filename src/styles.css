@@ -157,7 +157,42 @@ label { display: flex; flex-direction: column; gap: 0.3rem; margin-bottom: 0.75r
 /* Teal outline when an input is focused */
 input:focus { border-color: var(--teal); box-shadow: 0 0 0 0.2rem rgba(15, 118, 110, 0.25); }
 
+/* Solid teal buttons, including hover and pressed states */
+.btn-primary,
+.btn-outline-primary {
+  --bs-btn-bg: var(--teal);
+  --bs-btn-border-color: var(--teal);
+  --bs-btn-hover-bg: #0c615b;
+  --bs-btn-hover-border-color: #0c615b;
+  --bs-btn-active-bg: #0a524d;
+  --bs-btn-active-border-color: #0a524d;
+  --bs-btn-color: #fff;
+  --bs-btn-hover-color: #fff;
+  --bs-btn-active-color: #fff;
+}
 
+/* Outline buttons: transparent fill with teal text */
+.btn-outline-primary {
+  --bs-btn-bg: transparent;
+  --bs-btn-color: var(--teal);
+}
+
+/* Table wrapper: white card with a rounded border */
+.table-responsive {
+  margin-bottom: 1rem;
+  border: 1px solid var(--line);
+  border-radius: 0.75rem;
+  background: #fff;
+}
+
+/* Remove the extra gap Bootstrap adds under tables */
+.table { margin: 0; }
+/* Table header row: dark teal with white text */
+.table th { background: var(--teal-deep); color: #fff; }
+/* Alternate row shading so rows are easier to scan */
+.table tbody tr:nth-child(even) td { background: #f4fbfa; }
+/* Caption above the table, left-aligned and muted */
+caption { caption-side: top; padding: 0.6rem 0.75rem 0; color: #5c6f76; font-weight: 700; text-align: left; }
 
 /* Budget progress bar: full width, pill shape, no default border */
 progress {
