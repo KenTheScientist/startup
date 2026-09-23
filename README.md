@@ -18,7 +18,7 @@ With **Co-Budget**, everyone can stay on the same page when it comes to family f
 
 ### Design
 
-![Icon](src/assets/logo.png)
+![Icon](src/assets/logo_colored.png)
 
 ![Design](src/assets/design.png)
 
