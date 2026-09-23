@@ -28,60 +28,54 @@
           <li><a class="active" href="members.html">Members</a></li>
         </menu>
       </nav>
-      <!-- Login placeholder: user name display -->
-      <div>User: <span>Ken Thomson</span> <a href="index.html">Logout</a></div>
-    </header>
 
-    <main>
+      <main>
       <p><a href="budgets.html">Back to Budgets</a></p>
       <h2>Members</h2>
       <p>People in this budget can add envelopes, fill them, and record expenses. Share the join code or QR code to invite someone.</p>
 
       <!-- Database data placeholder -->
-      <table>
-        <thead>
-          <tr>
-            <th>Name</th>
-            <th>Role</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>Sarah</td>
-            <td>Owner</td>
-          </tr>
-          <tr>
-            <td>Jim</td>
-            <td>Member</td>
-          </tr>
-        </tbody>
-      </table>
+      <div class="table-responsive">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Role</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Sarah</td>
+              <td>Owner</td>
+            </tr>
+            <tr>
+              <td>Jim</td>
+              <td>Member</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
 
       <section>
         <h3>Join this budget</h3>
-        <p>Join code: XLKDN</p>
+        <p><strong>Join code: XLKDN</strong></p>
         <!-- Third party service placeholder: QR Tag API -->
         <p>QR code from QR Tag API Example</p>
-        <img
-          src="assets/qr_code_example.png"
-          alt="QR code to join the Home budget"
-          width="180"
-          height="180"
-        />
+        <img class="qr" src="assets/qr_code_example.png" alt="QR code to join the Home budget" />
       </section>
 
       <!-- WebSocket data placeholder -->
-      <section>
+      <section class="live">
         <h3>Live updates</h3>
         <ul>
           <li>Jim joined the Home budget</li>
         </ul>
       </section>
-    </main>
+      </main>
+    </div>
 
-    <footer>
-      Project by Kenneth Thomson 
-      <a href="https://github.com/KenTheScientist/startup">GitHub</a>
+    <footer id="site-footer">
+      <span>Project by Kenneth Thomson - <a href="https://github.com/KenTheScientist/startup">GitHub</a></span>
     </footer>
   </body>
 </html>
