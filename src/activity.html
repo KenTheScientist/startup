@@ -14,6 +14,11 @@
         <img src="assets/icon_white.png" alt="" />
         Co-Budget
       </h1>
+      <!-- Login placeholder: user name display -->
+      <div>User: <span>Ken Thomson</span> <a href="index.html">Logout</a></div>
+    </header>
+
+    <div class="layout">
       <nav>
         <menu>
           <li><a href="index.html">Login</a></li>
@@ -24,50 +29,52 @@
         </menu>
       </nav>
 
-    <main>
+      <main>
       <p><a href="budgets.html">Back to Budgets</a></p>
       <h2>Activity</h2>
       <p>Fills and expenses stored for this budget. New actions appear here as they happen.</p>
 
       <!-- Database data placeholder -->
-      <table>
-        <caption>DB Placeholder</caption>
-        <thead>
-          <tr>
-            <th>Type</th>
-            <th>User</th>
-            <th>Details</th>
-            <th>Amount</th>
-            <th>Envelope</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>Expense</td>
-            <td>Sarah</td>
-            <td>Plane Tickets</td>
-            <td>$600</td>
-            <td>Vacation</td>
-          </tr>
-          <tr>
-            <td>Fill</td>
-            <td>Jim</td>
-            <td>Added funds</td>
-            <td>$1,000</td>
-            <td>Vacation</td>
-          </tr>
-          <tr>
-            <td>Envelope</td>
-            <td>Sarah</td>
-            <td>Created envelope</td>
-            <td>—</td>
-            <td>Vacation</td>
-          </tr>
-        </tbody>
-      </table>
+      <div class="table-responsive">
+        <table class="table">
+          <caption>DB Placeholder</caption>
+          <thead>
+            <tr>
+              <th>Type</th>
+              <th>User</th>
+              <th>Details</th>
+              <th>Amount</th>
+              <th>Envelope</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Expense</td>
+              <td>Sarah</td>
+              <td>Plane Tickets</td>
+              <td>$600</td>
+              <td>Vacation</td>
+            </tr>
+            <tr>
+              <td>Fill</td>
+              <td>Jim</td>
+              <td>Added funds</td>
+              <td>$1,000</td>
+              <td>Vacation</td>
+            </tr>
+            <tr>
+              <td>Envelope</td>
+              <td>Sarah</td>
+              <td>Created envelope</td>
+              <td>—</td>
+              <td>Vacation</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
 
       <!-- WebSocket data placeholder -->
-      <section>
+      <section class="live">
         <h3>Live updates</h3>
         <ul>
           <li>Sarah spent $600 for Plane Tickets</li>
@@ -75,11 +82,11 @@
           <li>Sarah created a Vacation envelope</li>
         </ul>
       </section>
-    </main>
+      </main>
+    </div>
 
-    <footer>
-      Project by Kenneth Thomson 
-      <a href="https://github.com/KenTheScientist/startup">GitHub</a>
+    <footer id="site-footer">
+      <span>Project by Kenneth Thomson - <a href="https://github.com/KenTheScientist/startup">GitHub</a></span>
     </footer>
   </body>
 </html>
