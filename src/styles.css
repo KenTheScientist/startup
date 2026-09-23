@@ -97,3 +97,114 @@ nav a.active {
   color: var(--teal);
 }
 
+/* Main content area with page padding */
+main { min-width: 0; padding: 1.25rem 1.5rem 2rem; }
+/* Section titles and form legends in deep teal */
+h2, h3, legend { color: var(--teal-deep); font-weight: 700; }
+/* Limit paragraph width so lines stay readable */
+p { max-width: 42rem; }
+/* Default link color */
+a { color: var(--teal); }
+/* Darker teal when a link is hovered */
+a:hover { color: #0b554f; }
+
+/* Shared grid for side-by-side forms and envelope cards */
+.split,
+.envelope-list {
+  display: grid;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+/* Form columns that wrap onto new rows when the page is narrow */
+.split {
+  grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+  align-items: start;
+}
+
+/* Envelope card: icon, name, and amount on one row */
+.envelope {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1rem;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 0.9rem;
+}
+
+/* Envelope icon stays a fixed size */
+.envelope img { width: 48px; flex: none; }
+/* Envelope text fills the remaining space and can shrink */
+.envelope div { flex: 1; min-width: 0; }
+/* Tighten spacing under the envelope name and balance */
+.envelope h3, .envelope p { margin: 0 0 0.35rem; }
+
+/* White rounded cards for forms and info sections */
+fieldset,
+section {
+  margin: 0 0 1rem;
+  padding: 1rem;
+  border: 1px solid var(--line);
+  border-radius: 0.9rem;
+  background: #fff;
+}
+
+/* Form legend: smaller title sitting on the card border */
+legend { padding: 0; font-size: 1.05rem; }
+/* Stack each label above its input */
+label { display: flex; flex-direction: column; gap: 0.3rem; margin-bottom: 0.75rem; font-weight: 700; }
+/* Teal outline when an input is focused */
+input:focus { border-color: var(--teal); box-shadow: 0 0 0 0.2rem rgba(15, 118, 110, 0.25); }
+
+
+
+/* Budget progress bar: full width, pill shape, no default border */
+progress {
+  display: block;
+  width: 100%;
+  height: 0.7rem;
+  border: 0;
+  border-radius: 999px;
+  appearance: none;
+  -webkit-appearance: none;
+}
+
+/* Progress track behind the filled amount (Chrome/Safari) */
+progress::-webkit-progress-bar { background: #e1ecea; }
+/* Filled portion of the bar, mint fading to sky (Chrome/Safari) */
+progress::-webkit-progress-value { background: linear-gradient(90deg, var(--mint), var(--sky)); }
+/* Same mint-to-sky fill in Firefox */
+progress::-moz-progress-bar { background: linear-gradient(90deg, var(--mint), var(--sky)); }
+
+/* Live updates panel: mint stripe on the left edge */
+.live { border-left: 4px solid var(--mint); }
+/* Remove extra space around the live-update list */
+.live ul { margin: 0; }
+/* Join QR code: small framed image */
+.qr { width: 180px; max-width: 100%; padding: 0.5rem; border: 1px solid var(--line); border-radius: 0.75rem; }
+/* Login form stays a readable width */
+#login-form { max-width: 32rem; }
+/* Footer matches the header's dark teal bar */
+#site-footer { background: var(--teal-deep); color: #e7f6f4; }
+/* Footer links stay white and bold */
+#site-footer a { color: #fff; font-weight: 700; }
+
+/* Phone layout: stack the sidebar above the content */
+@media (max-width: 768px) {
+  /* One column so the sidebar sits on top of the page */
+  .layout { grid-template-columns: 1fr; }
+  /* Sidebar becomes a bar under the header */
+  nav { border-right: 0; border-bottom: 1px solid var(--line); padding: 0.5rem; }
+  /* Nav links sit in a wrapping row */
+  menu { flex-direction: row; flex-wrap: wrap; }
+  /* Smaller logo and title so the header fits */
+  #app-header img { height: 40px; }
+  #app-header h1 { font-size: 1.25rem; }
+  /* Tighter content padding */
+  main { padding: 1rem; }
+  /* Envelope buttons can drop to the next line */
+  .envelope { flex-wrap: wrap; }
+  /* Smaller table text and cell padding */
+  .table th, .table td { padding: 0.45rem 0.4rem; font-size: 0.85rem; }
+}
