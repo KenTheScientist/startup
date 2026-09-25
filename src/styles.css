@@ -191,8 +191,6 @@ input:focus { border-color: var(--teal); box-shadow: 0 0 0 0.2rem rgba(15, 118, 
 .table th { background: var(--teal-deep); color: #fff; }
 /* Alternate row shading so rows are easier to scan */
 .table tbody tr:nth-child(even) td { background: #f4fbfa; }
-/* Caption above the table, left-aligned and muted */
-caption { caption-side: top; padding: 0.6rem 0.75rem 0; color: #5c6f76; font-weight: 700; text-align: left; }
 
 /* Budget progress bar: full width, pill shape, no default border */
 progress {
