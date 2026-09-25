@@ -164,12 +164,12 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
 - [x] I completed the prerequisites for this deliverable (Simon deployed, GitHub link, Git commits)
-- [x] **Visually appealing colors and layout. No overflowing elements.** - Teal and mint palette, dark header and footer, and white cards in `src/styles.css`. Content wraps or shrinks so nothing overflows.
-- [x] **Use of a CSS framework** - Bootstrap 5.3.3 on every page for forms, buttons, and tables. Button colors are overridden to teal in `styles.css`.
-- [x] **All visual elements styled using CSS** - Header, sidebar, forms, envelopes, tables, progress bars, live updates, and the QR image are styled in `src/styles.css`.
-- [x] **Responsive to window resizing using flexbox and/or grid display** - Flexbox and grid lay out the page. Below 768px the sidebar stacks above the content.
-- [x] **Use of a imported font** - Nunito is imported from Google Fonts and set on `body`.
-- [x] **Use of different types of selectors including element, class, ID, and pseudo selectors** - Element (`body`), class (`.envelope`), ID (`#app-header`), and pseudo (`a:hover`, `input:focus`) selectors are in `src/styles.css`.
+- [x] **Visually appealing colors and layout. No overflowing elements.** - Teal and mint palette, dark header and footer, and white cards. Content wraps or shrinks so nothing overflows.
+- [x] **Use of a CSS framework** - Bootstrap 5.3.3 on every page for forms, buttons, and tables. Button colors are overridden to teal.
+- [x] **All visual elements styled using CSS** - Header, sidebar, forms, envelopes, tables, progress bars, live updates, etc. are styled using CSS.
+- [x] **Responsive to window resizing using flexbox and/or grid display** - Flexbox and grid lay out the page. Below 768px the sidebar stacks above the content. The page is responsive to window resizing.
+- [x] **Use of a imported font** - Nunito is imported from Google Fonts and set on everything.
+- [x] **Use of different types of selectors including element, class, ID, and pseudo selectors** - Element (`body`), class (`.envelope`), ID (`#app-header`), and pseudo (`a:hover`, `input:focus`) selectors are used in the stylesheet.
 
 ## 🚀 React part 1: Routing deliverable
 

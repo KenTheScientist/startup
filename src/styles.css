@@ -48,12 +48,12 @@ body {
   font-size: 1.6rem;
   font-weight: 700;
 }
+
 /* Header logo: fixed height, width follows the image */
 #app-header img { display: block; height: 52px; width: auto; }
+
 /* Header links (Login, etc.): white, slightly spaced from the title */
 #app-header a { margin-left: 0.75rem; color: #fff; }
-/* Keep header links white when hovered */
-#app-header a:hover { color: #fff; }
 
 /* Page body: fixed sidebar plus a flexible content column */
 .layout {
@@ -99,14 +99,18 @@ nav a.active {
 
 /* Main content area with page padding */
 main { min-width: 0; padding: 1.25rem 1.5rem 2rem; }
+
 /* Section titles and form legends in deep teal */
 h2, h3, legend { color: var(--teal-deep); font-weight: 700; }
+
 /* Limit paragraph width so lines stay readable */
 p { max-width: 42rem; }
+
 /* Default link color */
 a { color: var(--teal); }
-/* Darker teal when a link is hovered */
-a:hover { color: #0b554f; }
+
+/* Hovering a link changes the color to the deep teal */
+a:hover { color: var(--teal-deep); }
 
 /* Shared grid for side-by-side forms and envelope cards */
 .split,
@@ -114,12 +118,6 @@ a:hover { color: #0b554f; }
   display: grid;
   gap: 1rem;
   margin-bottom: 1rem;
-}
-
-/* Form columns that wrap onto new rows when the page is narrow */
-.split {
-  grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
-  align-items: start;
 }
 
 /* Envelope card: icon, name, and amount on one row */
@@ -135,8 +133,10 @@ a:hover { color: #0b554f; }
 
 /* Envelope icon stays a fixed size */
 .envelope img { width: 48px; flex: none; }
+
 /* Envelope text fills the remaining space and can shrink */
 .envelope div { flex: 1; min-width: 0; }
+
 /* Tighten spacing under the envelope name and balance */
 .envelope h3, .envelope p { margin: 0 0 0.35rem; }
 
