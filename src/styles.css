@@ -227,12 +227,12 @@ progress::-moz-progress-bar { background: linear-gradient(90deg, var(--mint), va
 
 /* Phone layout: stack the sidebar above the content */
 @media (max-width: 768px) {
-  /* One column so the sidebar sits on top of the page */
-  .layout { grid-template-columns: 1fr; }
+  /* One column with a content-height nav and flexible main area */
+  .layout { grid-template-columns: 1fr; grid-template-rows: auto 1fr; }
   /* Sidebar becomes a bar under the header */
   nav { border-right: 0; border-bottom: 1px solid var(--line); padding: 0.5rem; }
-  /* Nav links sit in a wrapping row */
-  menu { flex-direction: row; flex-wrap: wrap; }
+  /* Nav links stack when the bar is too narrow for one row */
+  menu { flex-direction: column; align-items: stretch; }
   /* Smaller logo and title so the header fits */
   #app-header img { height: 40px; }
   #app-header h1 { font-size: 1.25rem; }
