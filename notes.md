@@ -36,4 +36,8 @@ Interesting things I have learned about CSS:
 
 ## React
 
-Interesting things I have learned about React
+Interesting things I have learned about React:
+- React is a library for building user interfaces.
+- React can be used to compile HTML and Javascript into a single file.
+- Routing is a way to navigate between different pages of a website and affect the page.
+- React DOM is a library for rendering React components to the DOM.
