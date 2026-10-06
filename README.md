@@ -20,9 +20,9 @@ With **Co-Budget**, everyone can stay on the same page when it comes to family f
 
 ### Design
 
-![Icon](src/assets/logo_colored.png)
+![Icon](public/logo_colored.png)
 
-![Design](src/assets/design.png)
+![Design](public/design.png)
 
 The sketch above is rudimentary, but it shows the basic idea of the application. A user will have multiple budgets, and each budget will have multiple envelopes. Envelopes are the containers for the money. Users can add money to envelopes, and they can spend money from envelopes. 
 
@@ -53,6 +53,8 @@ sequenceDiagram
     Server ->> MongoDB: Create account entry
     Server ->> Sarah: [200: Account created] AuthToken 39a3fb
 ```
+
+
 
 
 
@@ -105,6 +107,8 @@ sequenceDiagram
 
 
 
+
+
 ### Key features
 
 - Secure account creation and login
@@ -113,6 +117,8 @@ sequenceDiagram
 - Cloud-based sync and budget sharing
 - Real-time updates for all users
 - QR Code sharing to allow users to join a budget without having to enter the join code
+
+
 
 ### Technologies
 
@@ -124,6 +130,8 @@ I am going to use the required technologies in the following ways.
 - **Service** - Uses a server to host the application's backend logic. Used for login, registration, budget creation, joining budgets, adding funds, and more. For the API, I will use QR Tag ([https://www.qrtag.net/api/](https://www.qrtag.net/api/)) to generate QR codes. This way, users can join a budget without having to enter a lengthy join code.
 - **DB/Login** - Uses MongoDB to store user accounts and login information. Credentials securely stored in the database. Budgets, envelopes, and history are stored in the database.
 - **WebSocket** - Uses WebSocket to send and receive real-time updates to all users in a budget. This is used to notify users when other people join a budget, add funds to an envelope, spend money from an envelope, create a new envelope, or delete an envelope.
+
+
 
 ## 🚀 Specification Deliverable
 
@@ -138,6 +146,8 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 - [x] Description of how you will use each technology including your 3rd party API and use of WebSocket
 - [x] One or more rough sketches of your application. Images must be embedded in this file using Markdown image references.
 
+
+
 ## 🚀 AWS deliverable
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
@@ -145,6 +155,8 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 - [x] **Rented EC2 server** - I rented an EC2 server from AWS. 
 - [x] **Leased domain name** - I leased a domain name from AWS: cobudget.click
 - [x] **Server accessible** from my domain: [https://cobudget.click](https://cobudget.click) - The server is accessible from the domain name right now.
+
+
 
 ## 🚀 HTML deliverable
 
@@ -161,6 +173,8 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 - [x] **DB data placeholder** - In the budgets.html, envelopes.html, and activity.html pages, I put a placeholder for the database data. This data will be displayed from the database.
 - [x] **WebSocket placeholder** - In the logged-in pages, I put a placeholder for WebSocket realtime notifications.
 
+
+
 ## 🚀 CSS deliverable
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
@@ -173,14 +187,18 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 - [x] **Use of a imported font** - Nunito is imported from Google Fonts and set on everything.
 - [x] **Use of different types of selectors including element, class, ID, and pseudo selectors** - Element (`body`), class (`.envelope`), ID (`#app-header`), and pseudo (`a:hover`, `input:focus`) selectors are used in the stylesheet.
 
+
+
 ## 🚀 React part 1: Routing deliverable
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
 - [x] I completed the prerequisites for this deliverable (Simon deployed, GitHub link, Git commits)
-- [x] **Bundled using Vite** - Vite bundles the Co-Budget React app, including the JSX pages and CSS, into a production build.
+- [x] **Bundled using Vite** - Vite bundles the Co-Budget React app, including the JSX pages and CSS.
 - [x] **Components** - Login, Budgets, Envelopes, Activity, and Members are each a component. A shared Navigation component renders the sidebar, and App renders the header and footer.
 - [x] **Router** - React Router serves Login at `/`, Budgets at `/budgets`, Envelopes at `/envelopes`, Activity at `/activity`, and Members at `/members`. Sidebar links use NavLink.
+
+
 
 ## 🚀 React part 2: Reactivity deliverable
 
@@ -189,6 +207,8 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 - [ ] I completed the prerequisites for this deliverable (Simon deployed, GitHub link, Git commits)
 - [ ] **All functionality implemented or mocked out** - I did not complete this part of the deliverable.
 - [ ] **Hooks** - I did not complete this part of the deliverable.
+
+
 
 ## 🚀 Service deliverable
 
@@ -203,6 +223,8 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 - [ ] **Supports registration, login, logout, and restricted endpoint** - I did not complete this part of the deliverable.
 - [ ] **Uses BCrypt to hash passwords** - I did not complete this part of the deliverable.
 
+
+
 ## 🚀 DB deliverable
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
@@ -210,6 +232,8 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 - [ ] I completed the prerequisites for this deliverable (Simon deployed, GitHub link, Git commits)
 - [ ] **Stores data in MongoDB** - I did not complete this part of the deliverable.
 - [ ] **Stores credentials in MongoDB** - I did not complete this part of the deliverable.
+
+
 
 ## 🚀 WebSocket deliverable
 
