@@ -1,0 +1,2 @@
+/* Join QR code: small framed image */
+.qr { width: 180px; max-width: 100%; padding: 0.5rem; border: 1px solid var(--line); border-radius: 0.75rem; }

@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import Navigation from '../widgets/navigation';
+import './envelopes.css';
 
 export default function Envelopes() {
     return (

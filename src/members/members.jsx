@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import Navigation from '../widgets/navigation';
+import './members.css';
 
 export default function Members() {
     return (

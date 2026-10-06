@@ -1,4 +1,5 @@
 import Navigation from '../widgets/navigation';
+import './login.css';
 
 export default function Login() {
     return (

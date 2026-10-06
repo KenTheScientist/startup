@@ -1,0 +1,51 @@
+/* Shared grid for envelope cards */
+.envelope-list {
+  display: grid;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+/* Envelope card: icon, name, and amount on one row */
+.envelope {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1rem;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 0.9rem;
+}
+
+/* Envelope icon stays a fixed size */
+.envelope img { width: 48px; flex: none; }
+
+/* Envelope text fills the remaining space and can shrink */
+.envelope div { flex: 1; min-width: 0; }
+
+/* Tighten spacing under the envelope name and balance */
+.envelope h3, .envelope p { margin: 0 0 0.35rem; }
+
+/* Budget progress bar: full width, pill shape, no default border */
+progress {
+  display: block;
+  width: 100%;
+  height: 0.7rem;
+  border: 0;
+  border-radius: 999px;
+  appearance: none;
+  -webkit-appearance: none;
+}
+
+/* Progress track behind the filled amount (Chrome/Safari) */
+progress::-webkit-progress-bar { background: #e1ecea; }
+
+/* Filled portion of the bar, mint fading to sky (Chrome/Safari) */
+progress::-webkit-progress-value { background: linear-gradient(90deg, var(--mint), var(--sky)); }
+
+/* Same mint-to-sky fill in Firefox */
+progress::-moz-progress-bar { background: linear-gradient(90deg, var(--mint), var(--sky)); }
+
+/* Phone layout: envelope buttons can drop to the next line */
+@media (max-width: 768px) {
+  .envelope { flex-wrap: wrap; }
+}
