@@ -12,7 +12,7 @@ export default function Login() {
                     track expenses, and see when others spend money in real time.
                 </p>
 
-                <form id="login-form" method="get" action="budgets.html">
+                <form id="login-form" method="get" action="/budgets">
                     <fieldset>
                     <legend>Login or create an account</legend>
                     <label>Username <input className="form-control" type="text" name="username" placeholder="username" /></label>
