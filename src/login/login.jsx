@@ -1,7 +1,10 @@
+import { useNavigate } from 'react-router-dom';
 import Navigation from '../widgets/navigation';
 import './login.css';
 
 export default function Login() {
+    const navigate = useNavigate();
+
     return (
         <div className="layout">
             <Navigation />
@@ -12,7 +15,7 @@ export default function Login() {
                     track expenses, and see when others spend money in real time.
                 </p>
 
-                <form id="login-form" method="get" action="/budgets">
+                <form id="login-form" onSubmit={(event) => { event.preventDefault(); navigate('/budgets'); }}>
                     <fieldset>
                     <legend>Login or create an account</legend>
                     <label>Username <input className="form-control" type="text" name="username" placeholder="username" /></label>
