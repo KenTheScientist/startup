@@ -7,6 +7,7 @@ import Login from './login/login';
 import Budgets from './budgets/budgets';
 import Envelopes from './envelopes/envelopes';
 import Activity from './activity/activity';
+import Members from './members/members';
 
 
 export default function App() {
@@ -26,6 +27,7 @@ export default function App() {
             <Route path="/budgets" element={<Budgets />} />
             <Route path="/envelopes" element={<Envelopes />} />
             <Route path="/activity" element={<Activity />} />
+            <Route path="/members" element={<Members />} />
         </Routes>
 
         <footer id="site-footer">
