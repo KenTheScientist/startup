@@ -1,4 +1,11 @@
-function App() {
+import React from 'react';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import './app.css';
+
+import { BrowserRouter, NavLink, Route, Routes } from 'react-router-dom';
+
+
+export default function App() {
 
     return (
         <header id="app-header">
@@ -12,5 +19,3 @@ function App() {
 
     )
 }
-
-export default App;
