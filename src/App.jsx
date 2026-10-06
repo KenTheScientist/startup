@@ -4,6 +4,7 @@ import './app.css';
 
 import { BrowserRouter, NavLink, Route, Routes } from 'react-router-dom';
 import Login from './login/login';
+import Budgets from './budgets/budgets';
 
 
 export default function App() {
@@ -20,6 +21,7 @@ export default function App() {
 
         <Routes>
             <Route path="/" element={<Login />} />
+            <Route path="/budgets" element={<Budgets />} />
         </Routes>
 
         <footer id="site-footer">
