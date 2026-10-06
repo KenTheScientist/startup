@@ -176,9 +176,9 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
 - [x] I completed the prerequisites for this deliverable (Simon deployed, GitHub link, Git commits)
-- [x] **Bundled using Vite** - Vite is used to bundle the application.
-- [x] **Components** - Components are used to create the application.
-- [x] **Router** - React Router is used to navigate between pages.
+- [x] **Bundled using Vite** - Vite bundles the Co-Budget React app, including the JSX pages and CSS, into a production build.
+- [x] **Components** - Login, Budgets, Envelopes, Activity, and Members are each a component. A shared Navigation component renders the sidebar, and App renders the header and footer.
+- [x] **Router** - React Router serves Login at `/`, Budgets at `/budgets`, Envelopes at `/envelopes`, Activity at `/activity`, and Members at `/members`. Sidebar links use NavLink.
 
 ## 🚀 React part 2: Reactivity deliverable
 
