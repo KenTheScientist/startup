@@ -11,7 +11,7 @@
 }
 
 /* Page shell: full-height column so the footer sits at the bottom */
-body {
+#root {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
