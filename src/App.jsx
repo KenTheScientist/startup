@@ -2,7 +2,8 @@ import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './app.css';
 
-import { BrowserRouter, NavLink, Route, Routes } from 'react-router-dom';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import Navigation from './widgets/navigation';
 import Login from './login/login';
 import Budgets from './budgets/budgets';
 import Envelopes from './envelopes/envelopes';
@@ -23,14 +24,17 @@ export default function App() {
         <div>User: <span>Not logged in</span></div>
         </header>
 
-        <Routes>
-            <Route path="/" element={<Login />} />
-            <Route path="/budgets" element={<Budgets />} />
-            <Route path="/envelopes" element={<Envelopes />} />
-            <Route path="/activity" element={<Activity />} />
-            <Route path="/members" element={<Members />} />
-            <Route path="*" element={<NotFound />} />
-        </Routes>
+        <div className="layout">
+            <Navigation />
+            <Routes>
+                <Route path="/" element={<Login />} />
+                <Route path="/budgets" element={<Budgets />} />
+                <Route path="/envelopes" element={<Envelopes />} />
+                <Route path="/activity" element={<Activity />} />
+                <Route path="/members" element={<Members />} />
+                <Route path="*" element={<NotFound />} />
+            </Routes>
+        </div>
 
         <footer id="site-footer">
             <span>Project by Kenneth Thomson - <a href="https://github.com/KenTheScientist/startup">GitHub</a></span>

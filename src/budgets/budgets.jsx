@@ -1,11 +1,8 @@
 import { Link } from 'react-router-dom';
-import Navigation from '../widgets/navigation';
 
 export default function Budgets() {
     return (
-        <div className="layout">
-            <Navigation />
-            <main>
+        <main>
                 <h2>Your Budgets</h2>
                 <p>Select, create, or join a budget to manage envelopes.</p>
 
@@ -63,7 +60,6 @@ export default function Budgets() {
                         <li>Sarah created the Home budget</li>
                     </ul>
                 </section>
-            </main>
-        </div>
+        </main>
     )
 }

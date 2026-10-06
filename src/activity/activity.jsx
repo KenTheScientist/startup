@@ -1,11 +1,8 @@
 import { Link } from 'react-router-dom';
-import Navigation from '../widgets/navigation';
 
 export default function Activity() {
     return (
-        <div className="layout">
-            <Navigation />
-            <main>
+        <main>
                 <p><Link to="/budgets">Back to Budgets</Link></p>
                 <h2>Activity</h2>
                 <p>Fills and expenses stored for this budget. New actions appear here as they happen.</p>
@@ -55,7 +52,6 @@ export default function Activity() {
                         <li>Sarah created a Vacation envelope</li>
                     </ul>
                 </section>
-            </main>
-        </div>
+        </main>
     )
 }

@@ -1,12 +1,9 @@
 import { Link } from 'react-router-dom';
-import Navigation from '../widgets/navigation';
 import './envelopes.css';
 
 export default function Envelopes() {
     return (
-        <div className="layout">
-            <Navigation />
-            <main>
+        <main>
                 <p><Link to="/budgets">Back to Budgets</Link></p>
                 <h2>Envelopes</h2>
                 <p>Manage envelopes for your budget.</p>
@@ -73,7 +70,6 @@ export default function Envelopes() {
                         <li>Sarah created a Vacation envelope</li>
                     </ul>
                 </section>
-            </main>
-        </div>
+        </main>
     )
 }

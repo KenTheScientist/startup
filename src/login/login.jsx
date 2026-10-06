@@ -1,14 +1,11 @@
 import { useNavigate } from 'react-router-dom';
-import Navigation from '../widgets/navigation';
 import './login.css';
 
 export default function Login() {
     const navigate = useNavigate();
 
     return (
-        <div className="layout">
-            <Navigation />
-            <main>
+        <main>
                 <h2>Login to Co-Budget</h2>
                 <p>
                     Co-Budget is a shared budget application for families and couples. Create budgets, add envelopes,
@@ -24,7 +21,6 @@ export default function Login() {
                     <button className="btn btn-outline-primary" type="submit">Create Account</button>
                     </fieldset>
                 </form>
-            </main>
-        </div>
+        </main>
     )
 }

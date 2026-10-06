@@ -1,12 +1,9 @@
 import { Link } from 'react-router-dom';
-import Navigation from '../widgets/navigation';
 import './members.css';
 
 export default function Members() {
     return (
-        <div className="layout">
-            <Navigation />
-            <main>
+        <main>
                 <p><Link to="/budgets">Back to Budgets</Link></p>
                 <h2>Members</h2>
                 <p>People in this budget can add envelopes, fill them, and record expenses. Share the join code or QR code to invite someone.</p>
@@ -45,7 +42,6 @@ export default function Members() {
                         <li>Jim joined the Home budget</li>
                     </ul>
                 </section>
-            </main>
-        </div>
+        </main>
     )
 }
