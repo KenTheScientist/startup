@@ -8,6 +8,7 @@ import Budgets from './budgets/budgets';
 import Envelopes from './envelopes/envelopes';
 import Activity from './activity/activity';
 import Members from './members/members';
+import NotFound from './notFound';
 
 
 export default function App() {
@@ -28,6 +29,7 @@ export default function App() {
             <Route path="/envelopes" element={<Envelopes />} />
             <Route path="/activity" element={<Activity />} />
             <Route path="/members" element={<Members />} />
+            <Route path="*" element={<NotFound />} />
         </Routes>
 
         <footer id="site-footer">
