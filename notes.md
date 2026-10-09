@@ -41,3 +41,8 @@ Interesting things I have learned about React:
 - React can be used to compile HTML and Javascript into a single file.
 - Routing is a way to navigate between different pages of a website and affect the page.
 - React DOM is a library for rendering React components to the DOM.
+
+- React state is a way to store data that can be used to render the UI.
+- React props are a way to pass data from a parent component to a child component.
+- React hooks are a way to use state and other React features in functional components.
+
