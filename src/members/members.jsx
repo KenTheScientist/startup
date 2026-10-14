@@ -1,7 +1,9 @@
+import { loadBudgets } from '../budgets/storage';
 import './members.css';
 
 export default function Members({ budget }) {
     if (!budget) return <main><p>Select a budget first.</p></main>;
+    const stored = loadBudgets().find((item) => item.code === budget.code);
     const joinUrl = `https://startup.cobudget.click/budgets?join=${budget.code}`;
     const qrUrl = `https://qrtag.net/api/qr_4.png?url=${joinUrl}`;
 
@@ -19,14 +21,12 @@ export default function Members({ budget }) {
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>Sarah</td>
-                                <td>Owner</td>
-                            </tr>
-                            <tr>
-                                <td>Jim</td>
-                                <td>Member</td>
-                            </tr>
+                            {(stored?.members || []).map((name) => (
+                                <tr key={name}>
+                                    <td>{name}</td>
+                                    <td>{name === stored.owner ? 'Owner' : 'Member'}</td>
+                                </tr>
+                            ))}
                         </tbody>
                     </table>
                 </div>
