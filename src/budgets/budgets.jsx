@@ -1,6 +1,9 @@
+import React from 'react';
 import { Link } from 'react-router-dom';
 
-export default function Budgets() {
+export default function Budgets({ selectBudget }) {
+    React.useEffect(() => selectBudget(null), []);
+
     return (
         <main>
                 <h2>Your Budgets</h2>
@@ -19,14 +22,14 @@ export default function Budgets() {
                         </thead>
                         <tbody>
                             <tr>
-                                <td><Link to="/envelopes">Home</Link></td>
+                                <td><Link to="/envelopes" onClick={() => selectBudget({ code: 'XLKDN', name: 'Home' })}>Home</Link></td>
                                 <td>XLKDN</td>
                                 <td>Sarah</td>
                                 <td>2</td>
                                 <td>$1,350</td>
                             </tr>
                             <tr>
-                                <td><Link to="/envelopes">Vacation Club</Link></td>
+                                <td><Link to="/envelopes" onClick={() => selectBudget({ code: 'Q9T2M', name: 'Vacation Club' })}>Vacation Club</Link></td>
                                 <td>Q9T2M</td>
                                 <td>Ken Thomson</td>
                                 <td>1</td>

@@ -66,6 +66,9 @@
   min-width: 0;
 }
 
+/* No sidebar (logged out or no budget selected): content fills the width */
+.layout:not(:has(nav)) { grid-template-columns: minmax(0, 1fr); }
+
 /* Sidebar: light background and a right border */
 nav {
   background: #f7fbfa;
@@ -91,6 +94,18 @@ nav a {
   color: var(--teal-deep);
   font-weight: 700;
   text-decoration: none;
+}
+
+/* Back link: faint gray-teal so it stands apart from the page links */
+nav a.back-link { color: #7a9a96; font-weight: 600; }
+
+/* Current budget name shown under the back link */
+.current-budget {
+  padding: 0.55rem 0.85rem;
+  border-bottom: 1px solid var(--line);
+  color: var(--teal);
+  font-size: 1.15rem;
+  font-weight: 800;
 }
 
 /* Hovered or current page link: mint background */

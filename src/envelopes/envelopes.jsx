@@ -1,10 +1,8 @@
-import { Link } from 'react-router-dom';
 import './envelopes.css';
 
 export default function Envelopes() {
     return (
         <main>
-                <p><Link to="/budgets">Back to Budgets</Link></p>
                 <h2>Envelopes</h2>
                 <p>Manage envelopes for your budget.</p>
                 <p><strong>Total funds: $500</strong></p>

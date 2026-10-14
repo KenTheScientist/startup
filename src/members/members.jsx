@@ -1,10 +1,8 @@
-import { Link } from 'react-router-dom';
 import './members.css';
 
 export default function Members() {
     return (
         <main>
-                <p><Link to="/budgets">Back to Budgets</Link></p>
                 <h2>Members</h2>
                 <p>People in this budget can add envelopes, fill them, and record expenses. Share the join code or QR code to invite someone.</p>
 

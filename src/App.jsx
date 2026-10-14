@@ -14,10 +14,18 @@ import NotFound from './notFound';
 
 export default function App() {
     const [userName, setUserName] = React.useState(localStorage.getItem('userName') || '');
+    const [budget, setBudget] = React.useState(JSON.parse(localStorage.getItem('budget')));
+
+    function selectBudget(newBudget) {
+        if (newBudget) localStorage.setItem('budget', JSON.stringify(newBudget));
+        else localStorage.removeItem('budget');
+        setBudget(newBudget);
+    }
 
     function logout() {
         localStorage.removeItem('userName');
         setUserName('');
+        selectBudget(null);
     }
 
     return (
@@ -38,10 +46,10 @@ export default function App() {
         </header>
 
         <div className="layout">
-            <Navigation userName={userName} />
+            {budget && <Navigation budget={budget} />}
             <Routes>
                 <Route path="/" element={<Login userName={userName} setUserName={setUserName} />} />
-                <Route path="/budgets" element={<Budgets />} />
+                <Route path="/budgets" element={<Budgets selectBudget={selectBudget} />} />
                 <Route path="/envelopes" element={<Envelopes />} />
                 <Route path="/activity" element={<Activity />} />
                 <Route path="/members" element={<Members />} />

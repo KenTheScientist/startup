@@ -1,9 +1,6 @@
-import { Link } from 'react-router-dom';
-
 export default function Activity() {
     return (
         <main>
-                <p><Link to="/budgets">Back to Budgets</Link></p>
                 <h2>Activity</h2>
                 <p>Fills and expenses stored for this budget. New actions appear here as they happen.</p>
 

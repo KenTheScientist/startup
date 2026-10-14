@@ -1,5 +1,5 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Navigate, useNavigate } from 'react-router-dom';
 import './login.css';
 
 export default function Login({ userName, setUserName }) {
@@ -19,10 +19,7 @@ export default function Login({ userName, setUserName }) {
         navigate('/budgets');
     }
 
-    function logout() {
-        localStorage.removeItem('userName');
-        setUserName('');
-    }
+    if (userName) return <Navigate to="/budgets" replace />;
 
     return (
         <main>
@@ -32,13 +29,6 @@ export default function Login({ userName, setUserName }) {
                     track expenses, and see when others spend money in real time.
                 </p>
 
-                {userName ? (
-                    <div>
-                        <p>Logged in as <strong>{userName}</strong></p>
-                        <button className="btn btn-primary" onClick={() => navigate('/budgets')}>Go to Budgets</button>
-                        <button className="btn btn-outline-primary" onClick={logout}>Logout</button>
-                    </div>
-                ) : (
                 <form id="login-form" onSubmit={(event) => { event.preventDefault(); auth(false); }}>
                     <fieldset>
                     <legend>Login or create an account</legend>
@@ -49,7 +39,6 @@ export default function Login({ userName, setUserName }) {
                     <button className="btn btn-outline-primary ms-2" type="button" disabled={!name || !password} onClick={() => auth(true)}>Create Account</button>
                     </fieldset>
                 </form>
-                )}
         </main>
     )
 }
