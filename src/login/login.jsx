@@ -46,7 +46,7 @@ export default function Login({ userName, setUserName }) {
                     <label>Password <input className="form-control" type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="password" /></label>
                     {error && <p className="text-danger">{error}</p>}
                     <button className="btn btn-primary" type="submit" disabled={!name || !password}>Login</button>
-                    <button className="btn btn-outline-primary" type="button" disabled={!name || !password} onClick={() => auth(true)}>Create Account</button>
+                    <button className="btn btn-outline-primary ms-2" type="button" disabled={!name || !password} onClick={() => auth(true)}>Create Account</button>
                     </fieldset>
                 </form>
                 )}

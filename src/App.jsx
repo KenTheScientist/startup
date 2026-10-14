@@ -2,7 +2,7 @@ import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './app.css';
 
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { BrowserRouter, Link, Route, Routes } from 'react-router-dom';
 import Navigation from './widgets/navigation';
 import Login from './login/login';
 import Budgets from './budgets/budgets';
@@ -15,6 +15,11 @@ import NotFound from './notFound';
 export default function App() {
     const [userName, setUserName] = React.useState(localStorage.getItem('userName') || '');
 
+    function logout() {
+        localStorage.removeItem('userName');
+        setUserName('');
+    }
+
     return (
         <BrowserRouter>
         <header id="app-header">
@@ -22,7 +27,14 @@ export default function App() {
             <img src="icon_white.png" alt="" />
             Co-Budget
         </h1>
-        <div>User: <span>{userName || 'Not logged in'}</span></div>
+        <div>
+            User: <span>{userName || 'Not logged in'}</span>
+            {userName && (
+                <Link className="btn btn-sm btn-outline-light ms-2" to="/" onClick={logout}>
+                    Logout
+                </Link>
+            )}
+        </div>
         </header>
 
         <div className="layout">
