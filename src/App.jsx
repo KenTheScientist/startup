@@ -53,7 +53,7 @@ export default function App() {
                 <Route path="/budgets" element={<Budgets userName={userName} selectBudget={selectBudget} />} />
                 <Route path="/envelopes" element={<Envelopes />} />
                 <Route path="/activity" element={<Activity />} />
-                <Route path="/members" element={<Members />} />
+                <Route path="/members" element={<Members budget={budget} />} />
                 <Route path="*" element={<NotFound />} />
             </Routes>
         </div>

@@ -16,10 +16,15 @@ export default function Login({ userName, setUserName }) {
         if (create) localStorage.setItem('users', JSON.stringify({ ...users, [name]: password }));
         localStorage.setItem('userName', name);
         setUserName(name);
-        navigate('/budgets');
+        navigate(afterLogin());
     }
 
-    if (userName) return <Navigate to="/budgets" replace />;
+    function afterLogin() {
+        const join = new URLSearchParams(window.location.search).get('join');
+        return join ? `/budgets?join=${join}` : '/budgets';
+    }
+
+    if (userName) return <Navigate to={afterLogin()} replace />;
 
     return (
         <main>

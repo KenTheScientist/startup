@@ -8,7 +8,16 @@ export default function Budgets({ userName, selectBudget }) {
     const [budgets, setBudgets] = React.useState(loadBudgets);
     const navigate = useNavigate();
 
-    React.useEffect(() => selectBudget(null), []);
+    React.useEffect(() => {
+        const joinCode = new URLSearchParams(window.location.search).get('join');
+        if (!joinCode) return selectBudget(null);
+        const found = budgets.find((b) => b.code === joinCode.toUpperCase());
+        if (!found) return selectBudget(null);
+        if (!found.members.includes(userName)) {
+            save(budgets.map((b) => b.code === found.code ? { ...b, members: [...b.members, userName] } : b));
+        }
+        open(found);
+    }, []);
 
     function open(budget) {
         selectBudget({ code: budget.code, name: budget.name });
