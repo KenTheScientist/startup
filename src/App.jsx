@@ -59,6 +59,7 @@ export default function App() {
 
         <footer id="site-footer">
             <span>Project by Kenneth Thomson - <a href="https://github.com/KenTheScientist/startup">GitHub</a></span>
+            <button type="button" className="btn btn-sm btn-outline-light" onClick={() => { localStorage.clear(); location.href = '/'; }}>Reset Local Storage</button>
         </footer>
         </BrowserRouter>
     )
