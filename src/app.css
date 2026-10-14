@@ -103,6 +103,7 @@ nav a.back-link { color: #7a9a96; font-weight: 600; }
 .current-budget {
   padding: 0.55rem 0.85rem;
   border-bottom: 1px solid var(--line);
+  text-align: center;
   color: var(--teal);
   font-size: 1.15rem;
   font-weight: 800;
@@ -187,14 +188,17 @@ input:focus { border-color: var(--teal); box-shadow: 0 0 0 0.2rem rgba(15, 118, 
 
 /* Table wrapper: white card with a rounded border */
 .table-responsive {
+  width: max-content;
+  max-width: 100%;
   margin-bottom: 1rem;
   border: 1px solid var(--line);
   border-radius: 0.75rem;
   background: #fff;
 }
 
-/* Remove the extra gap Bootstrap adds under tables */
-.table { margin: 0; }
+/* Shrink to the columns instead of Bootstrap's full-width default */
+.table { width: auto; margin: 0; }
+.table > :not(caption) > * > * { padding: 0.6rem 1.25rem; }
 
 /* Table header row: dark teal with white text */
 .table th { background: var(--teal-deep); color: #fff; }
