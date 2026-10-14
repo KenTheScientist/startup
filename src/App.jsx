@@ -13,6 +13,7 @@ import NotFound from './notFound';
 
 
 export default function App() {
+    const [userName, setUserName] = React.useState(localStorage.getItem('userName') || '');
 
     return (
         <BrowserRouter>
@@ -21,13 +22,13 @@ export default function App() {
             <img src="icon_white.png" alt="" />
             Co-Budget
         </h1>
-        <div>User: <span>Not logged in</span></div>
+        <div>User: <span>{userName || 'Not logged in'}</span></div>
         </header>
 
         <div className="layout">
             <Navigation />
             <Routes>
-                <Route path="/" element={<Login />} />
+                <Route path="/" element={<Login userName={userName} setUserName={setUserName} />} />
                 <Route path="/budgets" element={<Budgets />} />
                 <Route path="/envelopes" element={<Envelopes />} />
                 <Route path="/activity" element={<Activity />} />
