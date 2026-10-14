@@ -49,7 +49,7 @@ export default function App() {
             {budget && <Navigation budget={budget} />}
             <Routes>
                 <Route path="/" element={<Login userName={userName} setUserName={setUserName} />} />
-                <Route path="/budgets" element={<Budgets selectBudget={selectBudget} />} />
+                <Route path="/budgets" element={<Budgets userName={userName} selectBudget={selectBudget} />} />
                 <Route path="/envelopes" element={<Envelopes />} />
                 <Route path="/activity" element={<Activity />} />
                 <Route path="/members" element={<Members />} />
