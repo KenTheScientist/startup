@@ -130,6 +130,10 @@ a { color: var(--teal); }
 /* Hovering a link changes the color to the deep teal */
 a:hover { color: var(--teal-deep); }
 
+/* Budget create and join popup */
+dialog { width: min(26rem, 92vw); border: 1px solid var(--line); border-radius: 0.9rem; padding: 1.25rem; }
+dialog::backdrop { background: rgba(19, 78, 74, 0.4); }
+
 /* Side-by-side forms on Budgets and Envelopes */
 .split {
   display: grid;
