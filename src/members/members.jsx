@@ -34,6 +34,7 @@ export default function Members({ budget }) {
                 <section>
                     <h3>Join this budget</h3>
                     <p><strong>Join code: {budget.code}</strong></p>
+                    <p><strong>Join link: </strong><a href={joinUrl}>{joinUrl}</a></p>
                     <img className="qr" src={qrUrl} alt={`QR code to join the ${budget.name} budget`} />
                 </section>
 
