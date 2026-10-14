@@ -1,65 +1,70 @@
+import React from 'react';
+import { cents, loadBudgets, money, saveBudgets } from '../budgets/storage';
+import EnvelopePopup from './envelopePopup';
 import './envelopes.css';
 
-export default function Envelopes() {
+export default function Envelopes({ budget, userName }) {
+    const stored = loadBudgets().find((item) => item.code === budget?.code);
+    const [envelopes, setEnvelopes] = React.useState(stored?.envelopes || []);
+    const [launch, setLaunch] = React.useState(null);
+
+    if (!budget) return <main><p>Select a budget first.</p></main>;
+
+    function commit(next, entry) {
+        saveBudgets(loadBudgets().map((item) => item.code === budget.code ? {
+            ...item,
+            envelopes: next,
+            activity: [entry, ...(item.activity || [])],
+            funds: next.reduce((sum, envelope) => sum + envelope.balance, 0),
+        } : item));
+        setEnvelopes(next);
+    }
+
+    function create(name, capacity) {
+        if (envelopes.some((envelope) => envelope.name.toLowerCase() === name.toLowerCase())) return 'An envelope with that name already exists';
+        if (!(capacity > 0)) return 'Enter a capacity';
+        commit([...envelopes, { name, balance: 0, capacity: cents(capacity) }], { type: 'Envelope', user: userName, details: 'Created envelope', amount: cents(capacity), envelope: name });
+    }
+
+    function fill(name, amount) {
+        if (!(amount > 0)) return 'Enter an amount';
+        commit(envelopes.map((item) => item.name === name ? { ...item, balance: cents(item.balance + amount) } : item),
+            { type: 'Fill', user: userName, details: 'Added funds', amount: cents(amount), envelope: name });
+    }
+
+    function spend(label, name, amount) {
+        const envelope = envelopes.find((item) => item.name === name);
+        if (!envelope) return 'Pick an envelope';
+        if (!(amount > 0)) return 'Enter an amount';
+        commit(envelopes.map((item) => item.name === name ? { ...item, balance: cents(item.balance - amount) } : item),
+            { type: 'Expense', user: userName, details: label, amount: cents(amount), envelope: name });
+    }
+
+    const total = envelopes.reduce((sum, envelope) => sum + envelope.balance, 0);
+
     return (
         <main>
                 <h2>Envelopes</h2>
                 <p>Manage envelopes for your budget.</p>
-                <p><strong>Total funds: $500</strong></p>
-                <p>Envelopes hold money for a category. Add funds or record an expense so everyone can see the balance.</p>
+                <p><strong>Total funds: {money(total)}</strong></p>
 
                 <div className="envelope-list">
-                    <article className="envelope">
-                        <img src="envelope.png" alt="Envelope" />
-                        <div>
-                            <h3>Groceries</h3>
-                            <progress value="300" max="400"></progress>
-                            <p>$300 / $400</p>
-                        </div>
-                        <button className="btn btn-outline-primary" type="button">-</button>
-                        <button className="btn btn-outline-primary" type="button">+</button>
-                    </article>
-                    <article className="envelope">
-                        <img src="envelope.png" alt="Envelope" />
-                        <div>
-                            <h3>Vacation</h3>
-                            <progress value="200" max="300"></progress>
-                            <p>$200 / $300</p>
-                        </div>
-                        <button className="btn btn-outline-primary" type="button">-</button>
-                        <button className="btn btn-outline-primary" type="button">+</button>
-                    </article>
+                    {envelopes.length === 0 && <p>No envelopes yet.</p>}
+                    {envelopes.map((envelope) => (
+                        <article className="envelope" key={envelope.name}>
+                            <img src="envelope.png" alt="Envelope" />
+                            <div>
+                                <h3>{envelope.name}</h3>
+                                <progress value={envelope.balance} max={(envelope.capacity ?? envelope.filled) || 1}></progress>
+                                <p>{money(envelope.balance)} / {money(envelope.capacity ?? envelope.filled ?? 0)}</p>
+                            </div>
+                            <button className="btn btn-outline-primary" type="button" onClick={() => setLaunch({ kind: 'spend', envelope: envelope.name, id: Math.random() })}>-</button>
+                            <button className="btn btn-outline-primary" type="button" onClick={() => setLaunch({ kind: 'fill', envelope: envelope.name, id: Math.random() })}>+</button>
+                        </article>
+                    ))}
                 </div>
 
-                <div className="split">
-                    <form>
-                        <fieldset>
-                            <legend>New envelope</legend>
-                            <label>Name <input className="form-control" type="text" placeholder="Vacation" /></label>
-                            <button className="btn btn-primary" type="button">Create envelope</button>
-                        </fieldset>
-                    </form>
-
-                    <form>
-                        <fieldset>
-                            <legend>Add funds</legend>
-                            <label>Envelope <input className="form-control" type="text" placeholder="Vacation" /></label>
-                            <label>Amount <input className="form-control" type="number" placeholder="1000" /></label>
-                            <button className="btn btn-primary" type="button">Add</button>
-                        </fieldset>
-                    </form>
-
-                    <form>
-                        <fieldset>
-                            <legend>New expense</legend>
-                            <label>Label <input className="form-control" type="text" placeholder="Plane Tickets" /></label>
-                            <label>Envelope <input className="form-control" type="text" placeholder="Vacation" /></label>
-                            <label>Amount <input className="form-control" type="number" placeholder="600" /></label>
-                            <button className="btn btn-primary" type="button">Spend</button>
-                        </fieldset>
-                    </form>
-                </div>
-
+                <EnvelopePopup onCreate={create} onFill={fill} onSpend={spend} launch={launch} />
         </main>
     )
 }

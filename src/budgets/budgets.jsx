@@ -32,7 +32,7 @@ export default function Budgets({ userName, selectBudget }) {
     function create(budgetName) {
         let joinCode;
         do { joinCode = randomCode(); } while (budgets.some((b) => b.code === joinCode));
-        const budget = { name: budgetName, code: joinCode, owner: userName, members: [userName], funds: 0 };
+        const budget = { name: budgetName, code: joinCode, owner: userName, members: [userName], funds: 0, envelopes: [], activity: [] };
         save([...budgets, budget]);
         open(budget);
     }

@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import { money } from './storage';
 
 export default function BudgetTable({ budgets, userName, selectBudget }) {
     const mine = budgets.filter((b) => b.members.includes(userName));
@@ -25,7 +26,7 @@ export default function BudgetTable({ budgets, userName, selectBudget }) {
                             <td>{b.code}</td>
                             <td>{b.owner}</td>
                             <td>{b.members.length}</td>
-                            <td>${b.funds.toLocaleString()}</td>
+                            <td>{money(b.funds)}</td>
                         </tr>
                     ))}
                 </tbody>

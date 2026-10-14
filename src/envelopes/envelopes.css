@@ -3,6 +3,7 @@
   display: grid;
   gap: 1rem;
   margin-bottom: 1rem;
+  max-width: 1200px;
 }
 
 /* Envelope card: icon, name, and amount on one row */
