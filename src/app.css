@@ -55,6 +55,9 @@
 /* Header links (Login, etc.): white, slightly spaced from the title */
 #app-header a { margin-left: 0.75rem; color: #fff; }
 
+/* Header buttons: deep teal text on the white hover background */
+#app-header .btn:hover { color: var(--teal-deep); }
+
 /* Page body: fixed sidebar plus a flexible content column */
 .layout {
   display: grid;

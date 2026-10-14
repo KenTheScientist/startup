@@ -38,7 +38,7 @@ export default function App() {
         </header>
 
         <div className="layout">
-            <Navigation />
+            <Navigation userName={userName} />
             <Routes>
                 <Route path="/" element={<Login userName={userName} setUserName={setUserName} />} />
                 <Route path="/budgets" element={<Budgets />} />
