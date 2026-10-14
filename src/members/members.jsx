@@ -34,12 +34,6 @@ export default function Members() {
                     <img className="qr" src="qr_code_example.png" alt="QR code to join the Home budget" />
                 </section>
 
-                <section className="live">
-                    <h3>Live updates</h3>
-                    <ul>
-                        <li>Jim joined the Home budget</li>
-                    </ul>
-                </section>
         </main>
     )
 }

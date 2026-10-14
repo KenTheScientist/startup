@@ -10,6 +10,7 @@ import Envelopes from './envelopes/envelopes';
 import Activity from './activity/activity';
 import Members from './members/members';
 import NotFound from './notFound';
+import LiveUpdates from './widgets/liveUpdates';
 
 
 export default function App() {
@@ -57,6 +58,7 @@ export default function App() {
             </Routes>
         </div>
 
+        <LiveUpdates userName={userName} />
         <footer id="site-footer">
             <span>Project by Kenneth Thomson - <a href="https://github.com/KenTheScientist/startup">GitHub</a></span>
             <button type="button" className="btn btn-sm btn-outline-light" onClick={() => { localStorage.clear(); location.href = '/'; }}>Reset Local Storage</button>

@@ -42,13 +42,6 @@ export default function Budgets({ userName, selectBudget }) {
                 <p>Select, create, or join a budget to manage envelopes.</p>
                 <BudgetTable budgets={budgets} userName={userName} selectBudget={selectBudget} />
                 <BudgetPopup onCreate={create} onJoin={join} />
-                <section className="live">
-                    <h3>Live updates</h3>
-                    <ul>
-                        <li>Jim joined the Home budget</li>
-                        <li>Sarah created the Home budget</li>
-                    </ul>
-                </section>
         </main>
     )
 }

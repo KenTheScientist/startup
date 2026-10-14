@@ -60,14 +60,6 @@ export default function Envelopes() {
                     </form>
                 </div>
 
-                <section className="live">
-                    <h3>Live updates</h3>
-                    <ul>
-                        <li>Sarah spent $600 for Plane Tickets</li>
-                        <li>Jim added $1000 to the Vacation envelope</li>
-                        <li>Sarah created a Vacation envelope</li>
-                    </ul>
-                </section>
         </main>
     )
 }
