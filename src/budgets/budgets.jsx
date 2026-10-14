@@ -1,35 +1,14 @@
 import React from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-
-// Stand-in for the database. Home can be joined with code XLKDN.
-const seed = [
-    { name: 'Home', code: 'XLKDN', owner: 'Sarah', members: ['Sarah', 'Jim'], funds: 1350 },
-    { name: 'Vacation Club', code: 'Q9T2M', owner: 'Ken', members: ['Ken'], funds: 500 },
-];
-
-function loadBudgets() {
-    const saved = localStorage.getItem('budgets');
-    if (saved) return JSON.parse(saved);
-    localStorage.setItem('budgets', JSON.stringify(seed));
-    return seed;
-}
-
-function randomCode() {
-    const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
-    return Array.from({ length: 5 }, () => chars[Math.floor(Math.random() * chars.length)]).join('');
-}
+import { useNavigate } from 'react-router-dom';
+import { loadBudgets, randomCode, saveBudgets } from './storage';
+import BudgetTable from './budgetTable';
+import BudgetPopup from './budgetPopup';
 
 export default function Budgets({ userName, selectBudget }) {
     const [budgets, setBudgets] = React.useState(loadBudgets);
-    const [name, setName] = React.useState('');
-    const [code, setCode] = React.useState('');
-    const [error, setError] = React.useState('');
-    const [popup, setPopup] = React.useState('');
-    const dialog = React.useRef();
     const navigate = useNavigate();
 
     React.useEffect(() => selectBudget(null), []);
-    React.useEffect(() => { if (popup && !dialog.current.open) dialog.current.showModal(); }, [popup]);
 
     function open(budget) {
         selectBudget({ code: budget.code, name: budget.name });
@@ -37,80 +16,32 @@ export default function Budgets({ userName, selectBudget }) {
     }
 
     function save(next) {
-        localStorage.setItem('budgets', JSON.stringify(next));
+        saveBudgets(next);
         setBudgets(next);
     }
 
-    function create(event) {
-        event.preventDefault();
+    function create(budgetName) {
         let joinCode;
         do { joinCode = randomCode(); } while (budgets.some((b) => b.code === joinCode));
-        const budget = { name: name.trim(), code: joinCode, owner: userName, members: [userName], funds: 0 };
+        const budget = { name: budgetName, code: joinCode, owner: userName, members: [userName], funds: 0 };
         save([...budgets, budget]);
         open(budget);
     }
 
-    function join(event) {
-        event.preventDefault();
-        const joinCode = code.trim().toUpperCase();
+    function join(joinCode) {
         const found = budgets.find((b) => b.code === joinCode);
-        if (!found) return setError('No budget with that join code');
-        if (found.members.includes(userName)) return setError('You already belong to this budget');
+        if (!found) return 'No budget with that join code';
+        if (found.members.includes(userName)) return 'You already belong to this budget';
         save(budgets.map((b) => b.code === joinCode ? { ...b, members: [...b.members, userName] } : b));
         open(found);
     }
-
-    const mine = budgets.filter((b) => b.members.includes(userName));
 
     return (
         <main>
                 <h2>Your Budgets</h2>
                 <p>Select, create, or join a budget to manage envelopes.</p>
-
-                <div className="table-responsive">
-                    <table className="table">
-                        <thead>
-                            <tr>
-                                <th>Name</th>
-                                <th>Join code</th>
-                                <th>Owner</th>
-                                <th>Members</th>
-                                <th>Total funds</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {mine.length === 0 && (
-                                <tr><td colSpan="5">You have no budgets yet. Create one or join with a code.</td></tr>
-                            )}
-                            {mine.map((b) => (
-                                <tr key={b.code}>
-                                    <td><Link to="/envelopes" onClick={() => selectBudget({ code: b.code, name: b.name })}>{b.name}</Link></td>
-                                    <td>{b.code}</td>
-                                    <td>{b.owner}</td>
-                                    <td>{b.members.length}</td>
-                                    <td>${b.funds.toLocaleString()}</td>
-                                </tr>
-                            ))}
-                        </tbody>
-                    </table>
-                </div>
-
-                <div className="mb-3">
-                    <button type="button" className="btn btn-primary" onClick={() => { setError(''); setPopup('create'); }}>Create New Budget</button>
-                    <button type="button" className="btn btn-outline-primary ms-2" onClick={() => { setError(''); setPopup('join'); }}>Join Budget</button>
-                </div>
-                <dialog ref={dialog} onClose={() => setPopup('')}>
-                    <form onSubmit={popup === 'create' ? create : join}>
-                        <h3>{popup === 'create' ? 'Create a new budget' : 'Join a budget'}</h3>
-                        {popup === 'create'
-                            ? <label>Name <input className="form-control" type="text" value={name} onChange={(e) => setName(e.target.value)} placeholder="Home" /></label>
-                            : <label>Join code <input className="form-control" type="text" value={code} onChange={(e) => setCode(e.target.value)} placeholder="XLKDN" /></label>}
-                        {error && <p className="text-danger">{error}</p>}
-                        <button className="btn btn-primary" type="submit" disabled={popup === 'create' ? !name.trim() : !code.trim()}>{popup === 'create' ? 'Create' : 'Join'}</button>
-                        <button type="button" className="btn btn-outline-primary ms-2" onClick={() => dialog.current.close()}>Cancel</button>
-                    </form>
-                </dialog>
-
+                <BudgetTable budgets={budgets} userName={userName} selectBudget={selectBudget} />
+                <BudgetPopup onCreate={create} onJoin={join} />
                 <section className="live">
                     <h3>Live updates</h3>
                     <ul>
