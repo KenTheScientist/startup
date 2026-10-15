@@ -10,7 +10,7 @@ export default function Members({ budget }) {
     return (
         <main>
                 <h2>Members</h2>
-                <p>People in this budget can add envelopes, fill them, and record expenses. Share the join code or QR code to invite someone.</p>
+                <p>Share the join code or QR code to invite someone to this budget.</p>
 
                 <div className="table-responsive">
                     <table className="table">

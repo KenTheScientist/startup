@@ -6,7 +6,7 @@ export default function Activity({ budget }) {
     return (
         <main>
                 <h2>Activity</h2>
-                <p>Fills and expenses stored for this budget. New actions appear here as they happen.</p>
+                <p>Activity log for this budget.</p>
 
                 <div className="table-responsive">
                     <table className="table">

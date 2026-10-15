@@ -45,7 +45,7 @@ export default function Envelopes({ budget, userName }) {
     return (
         <main>
                 <h2>Envelopes</h2>
-                <p>Manage envelopes for your budget.</p>
+                <p>Organize your funds.</p>
                 <p><strong>Total funds: {money(total)}</strong></p>
 
                 <div className="envelope-list">
