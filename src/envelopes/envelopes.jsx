@@ -40,6 +40,13 @@ export default function Envelopes({ budget, userName }) {
             { type: 'Expense', user: userName, details: label, amount: cents(amount), envelope: name });
     }
 
+    function remove(name) {
+        const envelope = envelopes.find((item) => item.name === name);
+        if (!envelope) return 'That envelope is already gone';
+        commit(envelopes.filter((item) => item.name !== name),
+            { type: 'Delete', user: userName, details: 'Deleted envelope', amount: cents(envelope.balance), envelope: name });
+    }
+
     const total = envelopes.reduce((sum, envelope) => sum + envelope.balance, 0);
 
     return (
@@ -60,11 +67,12 @@ export default function Envelopes({ budget, userName }) {
                             </div>
                             <button className="btn btn-outline-primary" type="button" onClick={() => setLaunch({ kind: 'spend', envelope: envelope.name, id: Math.random() })}>-</button>
                             <button className="btn btn-outline-primary" type="button" onClick={() => setLaunch({ kind: 'fill', envelope: envelope.name, id: Math.random() })}>+</button>
+                            <button className="btn btn-outline-danger" type="button" onClick={() => setLaunch({ kind: 'delete', envelope: envelope.name, id: Math.random() })}>Delete</button>
                         </article>
                     ))}
                 </div>
 
-                <EnvelopePopup onCreate={create} onFill={fill} onSpend={spend} launch={launch} />
+                <EnvelopePopup onCreate={create} onFill={fill} onSpend={spend} onDelete={remove} launch={launch} />
         </main>
     )
 }
