@@ -1,6 +1,6 @@
 import React from 'react';
 
-const showNotifications = false;
+const showNotifications = true;
 
 const messages = [
     'Jim joined the Home budget',
