@@ -204,9 +204,9 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
-- [ ] I completed the prerequisites for this deliverable (Simon deployed, GitHub link, Git commits)
-- [ ] **All functionality implemented or mocked out** - I did not complete this part of the deliverable.
-- [ ] **Hooks** - I did not complete this part of the deliverable.
+- [x] I completed the prerequisites for this deliverable (Simon deployed, GitHub link, Git commits)
+- [x] **All functionality implemented or mocked out** - Users can create an account, log in, and log out. Budgets can be listed, created, and joined. Envelopes can be created, filled, spent, and deleted, and each action is stored in the activity log. Members, join codes, and balances come from localStorage, which mocks the database. QR codes are loaded from the QR Tag API. Websocket Notifications are mocked with setInterval.
+- [x] **Hooks** - useState holds the logged-in user, selected budget, and other local states. useEffect opens dialogs, joins a budget from a link, and starts the notification timer. 
 
 
 
