@@ -45,4 +45,4 @@ Interesting things I have learned about React:
 - React state is a way to store data that can be used to render the UI.
 - React props are a way to pass data from a parent component to a child component.
 - React hooks are a way to use state and other React features in functional components.
-
+- React components are a way to create reusable UI elements. This is key to building complex applications.
