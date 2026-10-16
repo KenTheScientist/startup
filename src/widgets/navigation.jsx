@@ -1,3 +1,4 @@
+// Sidebar links for the budget that is currently open.
 import { NavLink } from 'react-router-dom';
 
 export default function Navigation({ budget }) {
@@ -11,5 +12,5 @@ export default function Navigation({ budget }) {
                 <li><NavLink to="/members">Members</NavLink></li>
             </menu>
         </nav>
-    )
+    );
 }

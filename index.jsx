@@ -1,4 +1,4 @@
-import React from 'react';
+// Start the React app and draw it inside the #root element in index.html.
 import ReactDOM from 'react-dom/client';
 import App from './src/app';
 

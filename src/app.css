@@ -206,8 +206,7 @@ input:focus { border-color: var(--teal); box-shadow: 0 0 0 0.2rem rgba(15, 118, 
 /* Alternate row shading so rows are easier to scan */
 .table tbody tr:nth-child(even) td { background: #f4fbfa; }
 
-/* Live updates panel: mint stripe on the left edge */
-/* Live update popups, stacked in the top-right corner */
+/* Live update popups, centered under the header. Each card has a mint stripe on the left. */
 .live-popups {
   position: fixed;
   top: 6rem;

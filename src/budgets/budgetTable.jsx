@@ -1,8 +1,9 @@
+// Table of budgets the current user belongs to.
 import { Link } from 'react-router-dom';
 import { money } from './storage';
 
 export default function BudgetTable({ budgets, userName, selectBudget }) {
-    const mine = budgets.filter((b) => b.members.includes(userName));
+    const mine = budgets.filter((budget) => budget.members.includes(userName));
 
     return (
         <div className="table-responsive">
@@ -18,15 +19,22 @@ export default function BudgetTable({ budgets, userName, selectBudget }) {
                 </thead>
                 <tbody>
                     {mine.length === 0 && (
-                        <tr><td colSpan="5">You have no budgets yet. Create one or join with a code.</td></tr>
+                        <tr>
+                            <td colSpan="5">You have no budgets yet. Create one or join with a code.</td>
+                        </tr>
                     )}
-                    {mine.map((b) => (
-                        <tr key={b.code}>
-                            <td><Link to="/envelopes" onClick={() => selectBudget({ code: b.code, name: b.name })}>{b.name}</Link></td>
-                            <td>{b.code}</td>
-                            <td>{b.owner}</td>
-                            <td>{b.members.length}</td>
-                            <td>{money(b.funds)}</td>
+                    {mine.map((budget) => (
+                        <tr key={budget.code}>
+                            {/* Clicking the name selects that budget and opens its envelopes. */}
+                            <td>
+                                <Link to="/envelopes" onClick={() => selectBudget({ code: budget.code, name: budget.name })}>
+                                    {budget.name}
+                                </Link>
+                            </td>
+                            <td>{budget.code}</td>
+                            <td>{budget.owner}</td>
+                            <td>{budget.members.length}</td>
+                            <td>{money(budget.funds)}</td>
                         </tr>
                     ))}
                 </tbody>

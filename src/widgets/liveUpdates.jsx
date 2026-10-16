@@ -1,6 +1,5 @@
+// Fake live notifications. A timer stands in for WebSocket messages from other users.
 import React from 'react';
-
-const showNotifications = true;
 
 const messages = [
     'Jim joined the Home budget',
@@ -27,28 +26,53 @@ export default function LiveUpdates({ userName }) {
     const [notes, setNotes] = React.useState([]);
 
     React.useEffect(() => {
-        if (!showNotifications || !userName) return setNotes([]);
-        // This will be replaced with WebSocket messages
-        const timers = [];
-        let id;
-        function schedule() {
-            id = setInterval(() => {
-                clearInterval(id);
-                const note = { id: Math.random(), text: messages[Math.floor(Math.random() * messages.length)] };
-                setNotes((prev) => [...prev, note]);
-                timers.push(setTimeout(() => setNotes((prev) => prev.filter((n) => n.id !== note.id)), 5500));
-                schedule();
-            }, 2000 + Math.random() * 4000);
+        // Guests do not see notifications.
+        if (!userName) {
+            setNotes([]);
+            return;
         }
-        schedule();
-        return () => { clearInterval(id); timers.forEach(clearTimeout); };
+
+        const timeouts = [];
+        let stopped = false;
+
+        // Wait 2–6 seconds, show a random message, then hide it after 5.5 seconds.
+        function showNext() {
+            const wait = 2000 + Math.random() * 4000;
+            const showTimer = setTimeout(() => {
+                if (stopped) return;
+
+                const note = {
+                    id: Math.random(),
+                    text: messages[Math.floor(Math.random() * messages.length)],
+                };
+                setNotes((current) => [...current, note]);
+
+                const hideTimer = setTimeout(() => {
+                    setNotes((current) => current.filter((item) => item.id !== note.id));
+                }, 5500);
+                timeouts.push(hideTimer);
+
+                showNext();
+            }, wait);
+            timeouts.push(showTimer);
+        }
+
+        showNext();
+
+        // Stop pending timers when the user logs out or this component goes away.
+        return () => {
+            stopped = true;
+            timeouts.forEach(clearTimeout);
+        };
     }, [userName]);
 
-    if (!showNotifications || !notes.length) return null;
+    if (!notes.length) return null;
 
     return (
         <div className="live-popups">
-            {notes.map((note) => <div className="live-popup" key={note.id}>{note.text}</div>)}
+            {notes.map((note) => (
+                <div className="live-popup" key={note.id}>{note.text}</div>
+            ))}
         </div>
     );
 }
