@@ -27,45 +27,27 @@ export default function LiveUpdates({ userName }) {
     const [notes, setNotes] = React.useState([]);
 
     React.useEffect(() => {
-        // You must be logged in to see notifications.
         if (!userName) {
             setNotes([]);
             return;
         }
 
-        const timeouts = [];
-        let stopped = false;
-
-        // Wait 2–6 seconds, show a random message, then hide it after 5.5 seconds.
+        // Show a random note every 2–6 seconds, and remove it 5.5 seconds later.
+        const timers = [];
         function showNext() {
-            const wait = 2000 + Math.random() * 4000;
-            const showTimer = setTimeout(() => {
-                if (stopped) return;
-
-                const note = {
-                    id: Math.random(),
-                    text: messages[Math.floor(Math.random() * messages.length)],
-                };
-                setNotes((current) => [...current, note]);
-
-                // Hide the note after 5.5 seconds.
-                const hideTimer = setTimeout(() => {
-                    setNotes((current) => current.filter((item) => item.id !== note.id));
-                }, 5500);
-                timeouts.push(hideTimer);
-
+            timers.push(setTimeout(() => {
+                const id = Math.random();
+                const text = messages[Math.floor(Math.random() * messages.length)];
+                setNotes((current) => [...current, { id, text }]);
+                timers.push(setTimeout(() => {
+                    setNotes((current) => current.filter((item) => item.id !== id));
+                }, 5500));
                 showNext();
-            }, wait);
-            timeouts.push(showTimer);
+            }, 2000 + Math.random() * 4000));
         }
 
         showNext();
-
-        // Stop pending timers when the user logs out or this component goes away.
-        return () => {
-            stopped = true;
-            timeouts.forEach(clearTimeout);
-        };
+        return () => timers.forEach(clearTimeout);
     }, [userName]);
 
     if (!notes.length) return null;
