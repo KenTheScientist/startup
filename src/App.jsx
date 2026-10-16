@@ -71,6 +71,7 @@ export default function App() {
                 </Routes>
             </div>
 
+            {/* Live updates for if the user is logged in. */}
             <LiveUpdates userName={userName} />
 
             <footer id="site-footer">
