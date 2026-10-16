@@ -1,5 +1,6 @@
 // Fake live notifications. A timer stands in for WebSocket messages from other users.
 import React from 'react';
+import './liveUpdates.css';
 
 const messages = [
     'Jim joined the Home budget',
@@ -26,7 +27,7 @@ export default function LiveUpdates({ userName }) {
     const [notes, setNotes] = React.useState([]);
 
     React.useEffect(() => {
-        // Guests do not see notifications.
+        // You must be logged in to see notifications.
         if (!userName) {
             setNotes([]);
             return;
@@ -47,6 +48,7 @@ export default function LiveUpdates({ userName }) {
                 };
                 setNotes((current) => [...current, note]);
 
+                // Hide the note after 5.5 seconds.
                 const hideTimer = setTimeout(() => {
                     setNotes((current) => current.filter((item) => item.id !== note.id));
                 }, 5500);

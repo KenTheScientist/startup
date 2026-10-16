@@ -206,35 +206,6 @@ input:focus { border-color: var(--teal); box-shadow: 0 0 0 0.2rem rgba(15, 118, 
 /* Alternate row shading so rows are easier to scan */
 .table tbody tr:nth-child(even) td { background: #f4fbfa; }
 
-/* Live update popups, centered under the header. Each card has a mint stripe on the left. */
-.live-popups {
-  position: fixed;
-  top: 6rem;
-  left: 50%;
-  transform: translateX(-50%);
-  text-align: center;
-  z-index: 20;
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-  width: min(28rem, 90vw);
-}
-
-.live-popup {
-  padding: 0.75rem 1rem;
-  border: 1px solid var(--line);
-  border-left: 4px solid var(--mint);
-  border-radius: 0.7rem;
-  background: #fff;
-  box-shadow: 0 0.4rem 1rem rgba(19, 78, 74, 0.18);
-  animation: live-fade 5.5s forwards;
-}
-
-@keyframes live-fade {
-  0%, 90% { opacity: 1; }
-  100% { opacity: 0; }
-}
-
 /* Footer matches the header's dark teal bar */
 #site-footer { background: var(--teal-deep); color: #e7f6f4; }
 
