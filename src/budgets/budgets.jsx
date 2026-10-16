@@ -1,15 +1,16 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Navigate, useNavigate } from 'react-router-dom';
 import { loadBudgets, randomCode, saveBudgets } from './storage';
 import BudgetTable from './budgetTable';
 import BudgetPopup from './budgetPopup';
 
 export default function Budgets({ userName, selectBudget }) {
+    const joinCode = new URLSearchParams(window.location.search).get('join');
     const [budgets, setBudgets] = React.useState(loadBudgets);
     const navigate = useNavigate();
 
     React.useEffect(() => {
-        const joinCode = new URLSearchParams(window.location.search).get('join');
+        if (!userName) return;
         if (!joinCode) return selectBudget(null);
         const found = budgets.find((b) => b.code === joinCode.toUpperCase());
         if (!found) return selectBudget(null);
@@ -44,6 +45,8 @@ export default function Budgets({ userName, selectBudget }) {
         save(budgets.map((b) => b.code === joinCode ? { ...b, members: [...b.members, userName] } : b));
         open(found);
     }
+
+    if (joinCode && !userName) return <Navigate to={`/?join=${joinCode}`} replace />;
 
     return (
         <main>

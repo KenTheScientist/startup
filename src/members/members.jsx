@@ -4,7 +4,7 @@ import './members.css';
 export default function Members({ budget }) {
     if (!budget) return <main><p>Select a budget first.</p></main>;
     const stored = loadBudgets().find((item) => item.code === budget.code);
-    const joinUrl = `https://startup.cobudget.click/budgets?join=${budget.code}`;
+    const joinUrl = `https://startup.cobudget.click/?join=${budget.code}`;
     const qrUrl = `https://qrtag.net/api/qr_4.png?url=${joinUrl}`;
 
     return (
