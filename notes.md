@@ -46,3 +46,11 @@ Interesting things I have learned about React:
 - React props are a way to pass data from a parent component to a child component.
 - React hooks are a way to use state and other React features in functional components.
 - React components are a way to create reusable UI elements. This is key to building complex applications.
+
+## Service
+
+Interesting things I have learned about Service:
+- Servers receive requests from clients and send responses.
+- Servers can be hosted on AWS, Azure, or other cloud providers.
+- HTTP is the protocol for sending and receiving data between a server and a client.
+- PUT, POST, and DELETE are HTTP methods for creating, updating, and deleting data.
