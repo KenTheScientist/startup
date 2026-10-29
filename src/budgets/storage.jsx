@@ -7,6 +7,7 @@ function withDefaults(budget) {
         ...budget,
         envelopes: budget.envelopes || [],
         activity: budget.activity || [],
+        funds: budget.funds || 0,
     };
 }
 
