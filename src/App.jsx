@@ -25,6 +25,17 @@ export default function App() {
         fetch('https://api.frankfurter.dev/v1/latest?from=USD&to=EUR')
             .then((response) => response.json())
             .then((data) => setEuroRate(data.rates.EUR));
+        // The auth cookie is the real session. Drop a saved name when the token is missing or expired.
+        fetch('/api/me').then(async (response) => {
+            if (!response.ok) {
+                localStorage.removeItem('userName');
+                setUserName('');
+                return;
+            }
+            const body = await response.json();
+            localStorage.setItem('userName', body.username);
+            setUserName(body.username);
+        });
     }, []);
 
     // Remember the selected budget so a refresh stays on the same one.
@@ -36,13 +47,15 @@ export default function App() {
 
     // Log out, forget the selected budget, and leave the user name blank.
     function logout() {
+        fetch('/api/auth/logout', { method: 'DELETE' });
         localStorage.removeItem('userName');
         setUserName('');
         selectBudget(null);
     }
 
     // Wipe every saved login, budget, and setting, then go back to the login page.
-    function resetStorage() {
+    async function resetStorage() {
+        await fetch('/api/auth/logout', { method: 'DELETE' });
         localStorage.clear();
         location.href = '/';
     }
