@@ -19,6 +19,13 @@ export default function App() {
 
     // The budget the user is currently working in. Only the name and join code are kept here.
     const [budget, setBudget] = React.useState(JSON.parse(localStorage.getItem('budget')));
+    const [euroRate, setEuroRate] = React.useState(null);
+
+    React.useEffect(() => {
+        fetch('https://api.frankfurter.dev/v1/latest?from=USD&to=EUR')
+            .then((response) => response.json())
+            .then((data) => setEuroRate(data.rates.EUR));
+    }, []);
 
     // Remember the selected budget so a refresh stays on the same one.
     function selectBudget(newBudget) {
@@ -76,6 +83,7 @@ export default function App() {
 
             <footer id="site-footer">
                 <span>Project by Kenneth Thomson - <a href="https://github.com/KenTheScientist/startup">GitHub</a></span>
+                {euroRate && <span>1 USD = {euroRate} EUR</span>}
                 <button type="button" className="btn btn-sm btn-outline-light" onClick={resetStorage}>
                     Reset Local Storage
                 </button>
