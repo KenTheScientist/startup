@@ -1,4 +1,4 @@
-// Login and account creation. Accounts are saved in the browser until the service exists.
+// Login and account creation. The service stores the account and sets an auth cookie.
 import React from 'react';
 import { Navigate, useNavigate } from 'react-router-dom';
 import './login.css';
@@ -8,11 +8,6 @@ export default function Login({ userName, setUserName }) {
     const [name, setName] = React.useState('');
     const [password, setPassword] = React.useState('');
     const [error, setError] = React.useState('');
-
-    // Accounts are stored as { username: password }. This will be replaced by the login service.
-    function loadUsers() {
-        return JSON.parse(localStorage.getItem('users') || '{}');
-    }
 
     // After login, open a join link if the URL has one. Otherwise go to the budget list.
     function afterLogin() {
@@ -27,24 +22,18 @@ export default function Login({ userName, setUserName }) {
         navigate(afterLogin());
     }
 
-    function login() {
-        const users = loadUsers();
-        if (users[name] !== password) {
-            setError('Invalid username or password');
-            return;
+    async function submit(path) {
+        try {
+            const response = await fetch(path, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ username: name, password }),
+            });
+            if (response.ok) finishLogin();
+            else setError((await response.json()).msg);
+        } catch {
+            setError('Could not reach the service');
         }
-        finishLogin();
-    }
-
-    function createAccount() {
-        const users = loadUsers();
-        if (users[name]) {
-            setError('Username already exists');
-            return;
-        }
-        users[name] = password;
-        localStorage.setItem('users', JSON.stringify(users));
-        finishLogin();
     }
 
     // Someone who is already logged in should not see this form.
@@ -58,7 +47,7 @@ export default function Login({ userName, setUserName }) {
                 track expenses, and see when others spend money in real time.
             </p>
 
-            <form id="login-form" onSubmit={(event) => { event.preventDefault(); login(); }}>
+            <form id="login-form" onSubmit={(event) => { event.preventDefault(); submit('/api/auth/login'); }}>
                 <fieldset>
                     <legend>Login or create an account</legend>
                     <label>
@@ -71,7 +60,7 @@ export default function Login({ userName, setUserName }) {
                     </label>
                     {error && <p className="text-danger">{error}</p>}
                     <button className="btn btn-primary" type="submit" disabled={!name || !password}>Login</button>
-                    <button className="btn btn-outline-primary ms-2" type="button" disabled={!name || !password} onClick={createAccount}>
+                    <button className="btn btn-outline-primary ms-2" type="button" disabled={!name || !password} onClick={() => submit('/api/auth/register')}>
                         Create Account
                     </button>
                 </fieldset>
