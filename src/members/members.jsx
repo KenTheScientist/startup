@@ -1,12 +1,18 @@
 // Who is in the selected budget, and how someone else can join it.
-import { findBudget } from '../budgets/storage';
+import React from 'react';
 import './members.css';
 
 export default function Members({ budget }) {
-    if (!budget) return <main><p>Select a budget first.</p></main>;
+    const [members, setMembers] = React.useState([]);
 
-    const stored = findBudget(budget.code);
-    const members = stored?.members || [];
+    React.useEffect(() => {
+        if (!budget) return;
+        fetch(`/api/budgets/${budget.code}/members`).then(async (response) => {
+            if (response.ok) setMembers(await response.json());
+        });
+    }, [budget]);
+
+    if (!budget) return <main><p>Select a budget first.</p></main>;
 
     // The QR code encodes this link. Opening it logs the person in, then joins this budget.
     const joinUrl = `https://startup.cobudget.click/?join=${budget.code}`;
@@ -26,10 +32,10 @@ export default function Members({ budget }) {
                         </tr>
                     </thead>
                     <tbody>
-                        {members.map((name) => (
-                            <tr key={name}>
-                                <td>{name}</td>
-                                <td>{name === stored.owner ? 'Owner' : 'Member'}</td>
+                        {members.map((member) => (
+                            <tr key={member.name}>
+                                <td>{member.name}</td>
+                                <td>{member.role}</td>
                             </tr>
                         ))}
                     </tbody>

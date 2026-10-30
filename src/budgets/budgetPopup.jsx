@@ -22,9 +22,9 @@ export default function BudgetPopup({ onCreate, onJoin }) {
     }
 
     // Create or join. An error message stays in the dialog. Success leaves the page.
-    function submit(event) {
+    async function submit(event) {
         event.preventDefault();
-        const message = creating ? onCreate(name.trim()) : onJoin(code.trim().toUpperCase());
+        const message = await (creating ? onCreate(name.trim()) : onJoin(code.trim().toUpperCase()));
         if (message) setError(message);
     }
 

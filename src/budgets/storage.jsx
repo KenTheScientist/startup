@@ -31,11 +31,11 @@ export function findBudget(code) {
 
 // Change one budget, save the whole list, and leave every other budget alone.
 export function updateBudget(code, change) {
-    const budgets = loadBudgets().map((budget) => {
-        if (budget.code !== code) return budget;
-        return change(budget);
-    });
-    saveBudgets(budgets);
+    let budgets = loadBudgets();
+    if (!budgets.some((budget) => budget.code === code)) {
+        budgets = [...budgets, { code, envelopes: [], activity: [], funds: 0, members: [] }];
+    }
+    saveBudgets(budgets.map((budget) => (budget.code === code ? change(budget) : budget)));
 }
 
 // Show a number as US dollars. 12.5 becomes "$12.50".

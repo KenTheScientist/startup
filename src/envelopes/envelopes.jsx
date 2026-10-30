@@ -21,6 +21,11 @@ export default function Envelopes({ budget, userName }) {
             activity: [entry, ...(item.activity || [])],
             funds,
         }));
+        fetch(`/api/budgets/${budget.code}/activity`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(entry),
+        });
         setEnvelopes(nextEnvelopes);
     }
 

@@ -1,9 +1,17 @@
 // History of creates, fills, expenses, and deletes for the selected budget.
-import { findBudget, money } from '../budgets/storage';
+import React from 'react';
+import { money } from '../budgets/storage';
 
 export default function Activity({ budget }) {
+    const [rows, setRows] = React.useState([]);
+
     // Newest entries are stored first, so the table shows recent actions at the top.
-    const rows = findBudget(budget?.code)?.activity || [];
+    React.useEffect(() => {
+        if (!budget) return;
+        fetch(`/api/budgets/${budget.code}/activity`).then(async (response) => {
+            if (response.ok) setRows(await response.json());
+        });
+    }, [budget]);
 
     return (
         <main>
