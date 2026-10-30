@@ -1,4 +1,5 @@
 const crypto = require('crypto');
+const path = require('path');
 const express = require('express');
 const cookieParser = require('cookie-parser');
 const bcrypt = require('bcryptjs');
@@ -67,6 +68,12 @@ api.get('/me', (req, res) => {
 });
 
 app.use(express.static('public'));
+
+// Client routes such as /envelopes are not files. Send the app so the router can handle them.
+app.use((req, res, next) => {
+  if (req.method !== 'GET' || req.path.startsWith('/api')) return next();
+  res.sendFile(path.resolve('public', 'index.html'));
+});
 
 app.listen(port, () => {
   console.log(`Listening on port ${port}`);
