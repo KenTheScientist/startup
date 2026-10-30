@@ -86,6 +86,31 @@ module.exports = function budgetRoutes(userFromRequest) {
     if (budget) res.send(budget.activity);
   });
 
+  router.get('/budgets/:code/envelopes', (req, res) => {
+    const budget = memberBudget(req, res);
+    if (budget) res.send(budget.envelopes);
+  });
+
+  // Replace the envelope list, recompute the total, and record the change.
+  router.put('/budgets/:code/envelopes', (req, res) => {
+    const budget = memberBudget(req, res);
+    if (!budget) return;
+    const envelopes = req.body.envelopes || [];
+    budget.envelopes = envelopes;
+    budget.funds = Math.round(envelopes.reduce((sum, envelope) => sum + Number(envelope.balance), 0) * 100) / 100;
+    const activity = req.body.activity;
+    if (activity) {
+      budget.activity.unshift({
+        type: activity.type,
+        user: userFromRequest(req).username,
+        details: activity.details,
+        amount: activity.amount,
+        envelope: activity.envelope,
+      });
+    }
+    res.send(budget.envelopes);
+  });
+
   router.post('/budgets/:code/activity', (req, res) => {
     const budget = memberBudget(req, res);
     if (!budget) return;

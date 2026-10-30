@@ -1,6 +1,6 @@
 // Table of budgets the current user belongs to.
 import { Link } from 'react-router-dom';
-import { money } from './storage';
+import { money } from './money';
 
 export default function BudgetTable({ budgets, userName, selectBudget }) {
     const mine = budgets.filter((budget) => budget.members.includes(userName));

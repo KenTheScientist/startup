@@ -1,6 +1,6 @@
 // History of creates, fills, expenses, and deletes for the selected budget.
 import React from 'react';
-import { money } from '../budgets/storage';
+import { money } from '../budgets/money';
 
 export default function Activity({ budget }) {
     const [rows, setRows] = React.useState([]);

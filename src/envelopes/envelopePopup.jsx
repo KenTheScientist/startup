@@ -53,14 +53,14 @@ export default function EnvelopePopup({ onCreate, onFill, onSpend, onDelete, lau
     }
 
     // Ask the envelopes page to make the change. A returned string is an error and keeps the dialog open.
-    function submit(event) {
+    async function submit(event) {
         event.preventDefault();
 
         let message;
-        if (popup === 'create') message = onCreate(name.trim(), Number(capacity));
-        else if (popup === 'fill') message = onFill(launch.envelope, Number(amount));
-        else if (popup === 'delete') message = onDelete(launch.envelope);
-        else message = onSpend(label.trim(), launch.envelope, Number(amount));
+        if (popup === 'create') message = await onCreate(name.trim(), Number(capacity));
+        else if (popup === 'fill') message = await onFill(launch.envelope, Number(amount));
+        else if (popup === 'delete') message = await onDelete(launch.envelope);
+        else message = await onSpend(label.trim(), launch.envelope, Number(amount));
 
         if (message) {
             setError(message);
