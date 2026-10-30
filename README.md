@@ -194,14 +194,14 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
-- [ ] I completed the prerequisites for this deliverable (Simon deployed, GitHub link, Git commits)
-- [ ] **Node.js/Express HTTP service** - I did not complete this part of the deliverable.
-- [ ] **Static middleware for frontend** - I did not complete this part of the deliverable.
-- [ ] **Calls to third party endpoints** - I did not complete this part of the deliverable.
-- [ ] **Backend service endpoints** - I did not complete this part of the deliverable.
-- [ ] **Frontend calls service endpoints** - I did not complete this part of the deliverable.
-- [ ] **Supports registration, login, logout, and restricted endpoint** - I did not complete this part of the deliverable.
-- [ ] **Uses BCrypt to hash passwords** - I did not complete this part of the deliverable.
+- [x] I completed the prerequisites for this deliverable (Simon deployed, GitHub link, Git commits)
+- [x] **Node.js/Express HTTP service** - `service/index.js` is an Express app. It listens on port 4000 or a given port.
+- [x] **Static middleware for frontend** - `express.static('public')` serves the built frontend. `deployService.sh` runs the Vite build and copies it into `public` beside the server.
+- [x] **Calls to third party endpoints** - Originally I was planning on using the QR code for this requirement, but evidently one doesn't use the QR code using `fetch`. So, I added in a USD to EUR conversion rate. The footer fetches the euro rate from `https://api.frankfurter.dev/v1/latest?from=USD&to=EUR` and displays it.
+- [x] **Backend service endpoints** - Register, login, logout, and `GET /api/me` are in `service/index.js`. Budgets, members, activity, and envelope balances are in `service/budgets.js`.
+- [x] **Frontend calls service endpoints** - Login and account creation call the endpoints. The budget list, join, members, activity, and envelope pages call the budget endpoints.
+- [x] **Supports registration, login, logout, and restricted endpoint** - Accounts are created and logged in with a token stored in a cookie. Logout clears it. `GET /api/me` and the budget routes return 401 without that cookie.
+- [x] **Uses BCrypt to hash passwords** - `bcrypt` hashes the password on registration and `bcrypt.compare` checks it on login.
 
 ## 🚀 DB deliverable
 
