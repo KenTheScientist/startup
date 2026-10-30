@@ -12,6 +12,7 @@ app.use(cookieParser());
 
 const api = express.Router();
 app.use('/api', api);
+api.use(require('./budgets')(userFromRequest));
 
 function setAuthCookie(res, token) {
   res.cookie('token', token, { httpOnly: true, sameSite: 'strict' });
