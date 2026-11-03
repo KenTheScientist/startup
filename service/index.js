@@ -4,6 +4,8 @@ const express = require('express');
 const cookieParser = require('cookie-parser');
 const bcrypt = require('bcryptjs');
 
+require('./database');
+
 const app = express();
 const port = process.argv.length > 2 ? process.argv[2] : 4000;
 const users = [];
