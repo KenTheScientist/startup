@@ -1,6 +1,8 @@
 const crypto = require('crypto');
 const express = require('express');
 
+const { budgetCollection } = require('./database');
+
 const budgets = [];
 
 function joinCode() {
@@ -26,7 +28,7 @@ module.exports = function budgetRoutes(userFromRequest) {
   async function memberBudget(req, res) {
     const current = await user(req, res);
     if (!current) return null;
-    const budget = budgets.find((item) => item.code === req.params.code && item.members.includes(current.username));
+    const budget = await budgetCollection.findOne({ code: req.params.code, members: current.username });
     if (!budget) res.status(404).send({ msg: 'Budget not found' });
     return budget;
   }
