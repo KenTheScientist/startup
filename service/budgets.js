@@ -3,8 +3,6 @@ const express = require('express');
 
 const { budgetCollection } = require('./database');
 
-const budgets = [];
-
 function joinCode() {
   const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
   return Array.from({ length: 5 }, () => chars[crypto.randomInt(chars.length)]).join('');
@@ -35,14 +33,14 @@ module.exports = function budgetRoutes(userFromRequest) {
 
   router.get('/budgets', async (req, res) => {
     const current = await user(req, res);
-    if (current) res.send(budgets.filter((item) => item.members.includes(current.username)));
+    if (current) res.send(await budgetCollection.find({ members: current.username }).toArray());
   });
 
   router.post('/budgets', async (req, res) => {
     const current = await user(req, res);
     if (!current) return;
     let code = joinCode();
-    while (budgets.some((item) => item.code === code)) code = joinCode();
+    while (await budgetCollection.findOne({ code })) code = joinCode();
     const budget = {
       name: req.body.name,
       code,
@@ -52,25 +50,25 @@ module.exports = function budgetRoutes(userFromRequest) {
       envelopes: [],
       activity: [],
     };
-    budgets.push(budget);
+    await budgetCollection.insertOne(budget);
     res.status(201).send(budget);
   });
 
-  router.get('/budgets/:code', (req, res) => {
-    const budget = memberBudget(req, res);
+  router.get('/budgets/:code', async (req, res) => {
+    const budget = await memberBudget(req, res);
     if (budget) res.send(budget);
   });
 
-  router.get('/budgets/:code/members', (req, res) => {
-    const budget = memberBudget(req, res);
+  router.get('/budgets/:code/members', async (req, res) => {
+    const budget = await memberBudget(req, res);
     if (budget) res.send(memberList(budget));
   });
 
   // Join the budget named by the code. The signed-in user is the new member.
-  router.post('/budgets/:code/members', (req, res) => {
-    const current = user(req, res);
+  router.post('/budgets/:code/members', async (req, res) => {
+    const current = await user(req, res);
     if (!current) return;
-    const budget = budgets.find((item) => item.code === req.params.code);
+    const budget = await budgetCollection.findOne({ code: req.params.code });
     if (!budget) {
       res.status(404).send({ msg: 'No budget with that join code' });
       return;
@@ -80,22 +78,23 @@ module.exports = function budgetRoutes(userFromRequest) {
       return;
     }
     budget.members.push(current.username);
+    await budgetCollection.updateOne({ code: req.params.code }, { $set: { members: budget.members } });
     res.status(201).send(memberList(budget));
   });
 
-  router.get('/budgets/:code/activity', (req, res) => {
-    const budget = memberBudget(req, res);
+  router.get('/budgets/:code/activity', async (req, res) => {
+    const budget = await memberBudget(req, res);
     if (budget) res.send(budget.activity);
   });
 
-  router.get('/budgets/:code/envelopes', (req, res) => {
-    const budget = memberBudget(req, res);
+  router.get('/budgets/:code/envelopes', async (req, res) => {
+    const budget = await memberBudget(req, res);
     if (budget) res.send(budget.envelopes);
   });
 
   // Replace the envelope list, recompute the total, and record the change.
-  router.put('/budgets/:code/envelopes', (req, res) => {
-    const budget = memberBudget(req, res);
+  router.put('/budgets/:code/envelopes', async (req, res) => {
+    const budget = await memberBudget(req, res);
     if (!budget) return;
     const envelopes = req.body.envelopes || [];
     budget.envelopes = envelopes;
@@ -104,26 +103,31 @@ module.exports = function budgetRoutes(userFromRequest) {
     if (activity) {
       budget.activity.unshift({
         type: activity.type,
-        user: userFromRequest(req).username,
+        user: (await userFromRequest(req)).username,
         details: activity.details,
         amount: activity.amount,
         envelope: activity.envelope,
       });
     }
+    await budgetCollection.updateOne(
+      { code: req.params.code },
+      { $set: { envelopes: budget.envelopes, funds: budget.funds, activity: budget.activity } }
+    );
     res.send(budget.envelopes);
   });
 
-  router.post('/budgets/:code/activity', (req, res) => {
-    const budget = memberBudget(req, res);
+  router.post('/budgets/:code/activity', async (req, res) => {
+    const budget = await memberBudget(req, res);
     if (!budget) return;
     const entry = {
       type: req.body.type,
-      user: userFromRequest(req).username,
+      user: (await userFromRequest(req)).username,
       details: req.body.details,
       amount: req.body.amount,
       envelope: req.body.envelope,
     };
     budget.activity.unshift(entry);
+    await budgetCollection.updateOne({ code: req.params.code }, { $set: { activity: budget.activity } });
     res.status(201).send(entry);
   });
 
