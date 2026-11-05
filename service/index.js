@@ -4,7 +4,7 @@ const express = require('express');
 const cookieParser = require('cookie-parser');
 const bcrypt = require('bcryptjs');
 
-const { userCollection } = require('./database');
+const { userCollection, budgetCollection } = require('./database');
 
 const app = express();
 const port = process.argv.length > 2 ? process.argv[2] : 4000;
@@ -56,6 +56,13 @@ api.post('/auth/login', async (req, res) => {
   );
   setAuthCookie(res, user.token);
   res.send({ username: user.username });
+});
+
+api.delete('/reset', async (req, res) => {
+  await userCollection.deleteMany({});
+  await budgetCollection.deleteMany({});
+  res.clearCookie('token');
+  res.status(204).end();
 });
 
 api.delete('/auth/logout', async (req, res) => {

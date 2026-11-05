@@ -60,6 +60,13 @@ export default function App() {
         location.href = '/';
     }
 
+    // Delete every account and budget, then return to the login page.
+    async function resetDatabase() {
+        await fetch('/api/reset', { method: 'DELETE' });
+        localStorage.clear();
+        location.href = '/';
+    }
+
     return (
         <BrowserRouter>
             <header id="app-header">
@@ -99,6 +106,9 @@ export default function App() {
                 {euroRate && <span>1 USD = {euroRate} EUR</span>}
                 <button type="button" className="btn btn-sm btn-outline-light" onClick={resetStorage}>
                     Reset Local Storage
+                </button>
+                <button type="button" className="btn btn-sm btn-outline-light" onClick={resetDatabase}>
+                    Reset Entire Database
                 </button>
             </footer>
         </BrowserRouter>
