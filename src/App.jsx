@@ -20,6 +20,7 @@ export default function App() {
     // The budget the user is currently working in. Only the name and join code are kept here.
     const [budget, setBudget] = React.useState(JSON.parse(localStorage.getItem('budget')));
     const [euroRate, setEuroRate] = React.useState(null);
+    const [resetOpen, setResetOpen] = React.useState(false);
 
     React.useEffect(() => {
         fetch('https://api.frankfurter.dev/v1/latest?from=USD&to=EUR')
@@ -104,12 +105,13 @@ export default function App() {
             <footer id="site-footer">
                 <span>Project by Kenneth Thomson - <a href="https://github.com/KenTheScientist/startup">GitHub</a></span>
                 {euroRate && <span>1 USD = {euroRate} EUR</span>}
-                <button type="button" className="btn btn-sm btn-outline-light" onClick={resetStorage}>
-                    Reset Local Storage
-                </button>
-                <button type="button" className="btn btn-sm btn-outline-light" onClick={resetDatabase}>
-                    Reset Entire Database
-                </button>
+                <div className={`dropup ${resetOpen ? 'show' : ''}`}>
+                    <button type="button" className="btn btn-sm btn-outline-light" onClick={() => setResetOpen((open) => !open)}>Reset</button>
+                    <ul className={`dropdown-menu dropdown-menu-end ${resetOpen ? 'show' : ''}`}>
+                        <li><button type="button" className="dropdown-item" onClick={resetStorage}>Reset Local Storage</button></li>
+                        <li><button type="button" className="dropdown-item" onClick={resetDatabase}>Reset Entire Database</button></li>
+                    </ul>
+                </div>
             </footer>
         </BrowserRouter>
     );

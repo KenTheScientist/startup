@@ -212,6 +212,15 @@ input:focus { border-color: var(--teal); box-shadow: 0 0 0 0.2rem rgba(15, 118, 
 /* Footer links stay white and bold */
 #site-footer a { color: #fff; font-weight: 700; }
 
+/* Open the reset menu above the footer instead of below it */
+#site-footer .dropup .dropdown-menu {
+  top: auto;
+  bottom: 100%;
+  right: 0;
+  left: auto;
+  margin-bottom: 0.25rem;
+}
+
 /* Phone layout: stack the sidebar above the content */
 @media (max-width: 768px) {
   /* One column with a content-height nav and flexible main area */
