@@ -68,6 +68,7 @@ export default function Budgets({ userName, selectBudget }) {
 
     // Send guests to the login page and keep the join code in the URL.
     if (joinCode && !userName) return <Navigate to={`/?join=${joinCode}`} replace />;
+    if (!userName) return <Navigate to="/" replace />;
 
     return (
         <main>
