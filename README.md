@@ -207,9 +207,9 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
-- [ ] I completed the prerequisites for this deliverable (Simon deployed, GitHub link, Git commits)
-- [ ] **Stores data in MongoDB** - I did not complete this part of the deliverable.
-- [ ] **Stores credentials in MongoDB** - I did not complete this part of the deliverable.
+- [x] I completed the prerequisites for this deliverable (Simon deployed, GitHub link, Git commits)
+- [x] **Stores data in MongoDB** - `service/database.js` connects to the `startup` database. `service/index.js` stores the user in the `user` collection. `service/budgets.js` stores each budget in the `budget` collection, including its members, envelopes, funds, and activity. Creating a budget uses `insertOne`. Listing and opening a budget use `find` and `findOne`. Joining, updating envelopes, and adding activity use `updateOne`.
+- [x] **Stores credentials in MongoDB** - Registration inserts the username and a bcrypt password hash into the `user` collection. Login loads that document with `findOne` and checks the password with `bcrypt.compare`. 
 
 ## 🚀 WebSocket deliverable
 
