@@ -16,28 +16,28 @@ function memberList(budget) {
 module.exports = function budgetRoutes(userFromRequest) {
   const router = express.Router();
 
-  function user(req, res) {
-    const found = userFromRequest(req);
+  async function user(req, res) {
+    const found = await userFromRequest(req);
     if (!found) res.status(401).send({ msg: 'Unauthorized' });
     return found;
   }
 
   // A budget the signed-in user belongs to, or a 404.
-  function memberBudget(req, res) {
-    const current = user(req, res);
+  async function memberBudget(req, res) {
+    const current = await user(req, res);
     if (!current) return null;
     const budget = budgets.find((item) => item.code === req.params.code && item.members.includes(current.username));
     if (!budget) res.status(404).send({ msg: 'Budget not found' });
     return budget;
   }
 
-  router.get('/budgets', (req, res) => {
-    const current = user(req, res);
+  router.get('/budgets', async (req, res) => {
+    const current = await user(req, res);
     if (current) res.send(budgets.filter((item) => item.members.includes(current.username)));
   });
 
-  router.post('/budgets', (req, res) => {
-    const current = user(req, res);
+  router.post('/budgets', async (req, res) => {
+    const current = await user(req, res);
     if (!current) return;
     let code = joinCode();
     while (budgets.some((item) => item.code === code)) code = joinCode();
