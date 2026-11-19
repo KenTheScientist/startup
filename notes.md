@@ -54,3 +54,20 @@ Interesting things I have learned about Service:
 - Servers can be hosted on AWS, Azure, or other cloud providers.
 - HTTP is the protocol for sending and receiving data between a server and a client.
 - PUT, POST, and DELETE are HTTP methods for creating, updating, and deleting data.
+
+## Database
+
+Interesting things I have learned about Database:
+- Databases are used to store and retrieve data.
+- MongoDB is a NoSQL database that is a good fit for web applications.
+- Pushing data to the database is done with POST requests.
+- Pulling data from the database is done with GET requests.
+- Updating data in the database is done with PUT requests.
+- Deleting data from the database is done with DELETE requests.
+
+## WebSocket
+
+Interesting things I have learned about WebSocket:
+- WebSocket is a protocol for sending and receiving data between a server and a client.
+- Also, it can be used for clients to send messages to the server and the server to send messages to another client. (client to client communication overall)
+- This is a real time protocol
