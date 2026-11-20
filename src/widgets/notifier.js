@@ -6,11 +6,9 @@ class Notifier {
     const port = window.location.port;
     this.socket = new WebSocket(`${protocol}://${window.location.hostname}:${port}/ws`);
     this.socket.onmessage = async (msg) => {
-      try {
-        const raw = typeof msg.data === 'string' ? msg.data : await msg.data.text();
-        const event = JSON.parse(raw);
-        this.handlers.forEach((handler) => handler(event));
-      } catch {}
+      const raw = typeof msg.data === 'string' ? msg.data : await msg.data.text();
+      const event = JSON.parse(raw);
+      this.handlers.forEach((handler) => handler(event));
     };
   }
 
