@@ -5,6 +5,7 @@ const cookieParser = require('cookie-parser');
 const bcrypt = require('bcryptjs');
 
 const { userCollection, budgetCollection } = require('./database');
+const { peerProxy } = require('./peerProxy');
 
 const app = express();
 const port = process.argv.length > 2 ? process.argv[2] : 4000;
@@ -93,6 +94,8 @@ app.use((req, res, next) => {
   res.sendFile(path.resolve('public', 'index.html'));
 });
 
-app.listen(port, () => {
+const httpService = app.listen(port, () => {
   console.log(`Listening on port ${port}`);
 });
+
+peerProxy(httpService);
