@@ -218,6 +218,6 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 - [x] I completed the prerequisites for this deliverable (Simon deployed, GitHub link, Git commits)
 - [x] **Backend listens for WebSocket connection** - `service/peerProxy.js` attaches a WebSocket server to the HTTP server and accepts connections at `/ws`.
 - [x] **Frontend makes WebSocket connection** - `src/widgets/notifier.js` opens a WebSocket and enables real time notifications.
-- [x] **Data sent over WebSocket connection** - Creating or joining a budget, and creating, filling, spending, or deleting an envelope, sends a message. Right now the service forwards it to every other connected client. Ideally, the service would only forward it to the clients in the same budget.
+- [x] **Data sent over WebSocket connection** - Creating or joining a budget, and creating, filling, spending, or deleting an envelope, sends a message. Right now the service forwards it to every other connected client. Ideally, the service would only forward it to the clients in the same budget. Live updates are also implemented so other clients can see the changes in real time.
 - [x] **WebSocket data displayed** - `LiveUpdates` shows each incoming message as a popup like the placeholder from before.
 - [x] **Application is fully functional** - The popup timer placeholder is gone. Notifications come from real budget actions over WebSocket.
