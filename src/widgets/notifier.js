@@ -14,9 +14,9 @@ class Notifier {
     };
   }
 
-  broadcast(text) {
+  broadcast(text, code) {
     if (this.socket.readyState === WebSocket.OPEN) {
-      this.socket.send(JSON.stringify({ text }));
+      this.socket.send(JSON.stringify({ text, code }));
     }
   }
 
