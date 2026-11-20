@@ -1,6 +1,7 @@
 // History of creates, fills, expenses, and deletes for the selected budget.
 import React from 'react';
 import { money } from '../budgets/money';
+import { notifier } from '../widgets/notifier';
 
 export default function Activity({ budget }) {
     const [rows, setRows] = React.useState([]);
@@ -8,9 +9,17 @@ export default function Activity({ budget }) {
     // Newest entries are stored first, so the table shows recent actions at the top.
     React.useEffect(() => {
         if (!budget) return;
-        fetch(`/api/budgets/${budget.code}/activity`).then(async (response) => {
-            if (response.ok) setRows(await response.json());
-        });
+        function load() {
+            fetch(`/api/budgets/${budget.code}/activity`).then(async (response) => {
+                if (response.ok) setRows(await response.json());
+            });
+        }
+        function onNote(event) {
+            if (event.code === budget.code) load();
+        }
+        load();
+        notifier.addHandler(onNote);
+        return () => notifier.removeHandler(onNote);
     }, [budget]);
 
     return (
