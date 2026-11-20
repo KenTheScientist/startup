@@ -12,22 +12,16 @@ export default function LiveUpdates({ userName }) {
             return;
         }
 
-        // Show a random note every 2–6 seconds, and remove it 5.5 seconds later.
-        const timers = [];
-        function showNext() {
-            timers.push(setTimeout(() => {
-                const id = Math.random();
-                const text = messages[Math.floor(Math.random() * messages.length)];
-                setNotes((current) => [...current, { id, text }]);
-                timers.push(setTimeout(() => {
-                    setNotes((current) => current.filter((item) => item.id !== id));
-                }, 5500));
-                showNext();
-            }, 2000 + Math.random() * 4000));
+        function handle(event) {
+            const id = Math.random();
+            setNotes((current) => [...current, { id, text: event.text }]);
+            setTimeout(() => {
+                setNotes((current) => current.filter((item) => item.id !== id));
+            }, 5500);
         }
 
-        showNext();
-        return () => timers.forEach(clearTimeout);
+        notifier.addHandler(handle);
+        return () => notifier.removeHandler(handle);
     }, [userName]);
 
     if (!notes.length) return null;
