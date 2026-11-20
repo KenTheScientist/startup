@@ -12,9 +12,17 @@ export default function Envelopes({ budget, userName }) {
 
     React.useEffect(() => {
         if (!budget) return;
-        fetch(`/api/budgets/${budget.code}/envelopes`).then(async (response) => {
-            if (response.ok) setEnvelopes(await response.json());
-        });
+        function load() {
+            fetch(`/api/budgets/${budget.code}/envelopes`).then(async (response) => {
+                if (response.ok) setEnvelopes(await response.json());
+            });
+        }
+        function onNote(event) {
+            if (event.code === budget.code) load();
+        }
+        load();
+        notifier.addHandler(onNote);
+        return () => notifier.removeHandler(onNote);
     }, [budget]);
 
     if (!budget) return <main><p>Select a budget first.</p></main>;
@@ -43,7 +51,7 @@ export default function Envelopes({ budget, userName }) {
             amount: cents(capacity),
             envelope: name,
         });
-        if (!error) notifier.broadcast(`${userName} created a ${name} envelope`);
+        if (!error) notifier.broadcast(`${userName} created a ${name} envelope`, budget.code);
         return error;
     }
 
@@ -60,7 +68,7 @@ export default function Envelopes({ budget, userName }) {
             amount: cents(amount),
             envelope: name,
         });
-        if (!error) notifier.broadcast(`${userName} added ${money(cents(amount))} to the ${name} envelope`);
+        if (!error) notifier.broadcast(`${userName} added ${money(cents(amount))} to the ${name} envelope`, budget.code);
         return error;
     }
 
@@ -79,7 +87,7 @@ export default function Envelopes({ budget, userName }) {
             amount: cents(amount),
             envelope: name,
         });
-        if (!error) notifier.broadcast(`${userName} spent ${money(cents(amount))} on ${label} from ${name}`);
+        if (!error) notifier.broadcast(`${userName} spent ${money(cents(amount))} on ${label} from ${name}`, budget.code);
         return error;
     }
 
@@ -94,7 +102,7 @@ export default function Envelopes({ budget, userName }) {
             amount: cents(envelope.balance),
             envelope: name,
         });
-        if (!error) notifier.broadcast(`${userName} deleted the ${name} envelope`);
+        if (!error) notifier.broadcast(`${userName} deleted the ${name} envelope`, budget.code);
         return error;
     }
 
