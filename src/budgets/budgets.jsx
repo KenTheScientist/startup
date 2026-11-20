@@ -3,6 +3,7 @@ import React from 'react';
 import { Navigate, useNavigate } from 'react-router-dom';
 import BudgetTable from './budgetTable';
 import BudgetPopup from './budgetPopup';
+import { notifier } from '../widgets/notifier';
 
 export default function Budgets({ userName, selectBudget }) {
     // A join link looks like /budgets?join=XLKDN. Empty when the user opened the page normally.
@@ -36,6 +37,8 @@ export default function Budgets({ userName, selectBudget }) {
                 }
                 list = await (await fetch('/api/budgets')).json();
                 setBudgets(list);
+                const joinedBudget = list.find((budget) => budget.code === code);
+                if (joinedBudget) notifier.broadcast(`${userName} joined the ${joinedBudget.name} budget`);
             }
             const found = list.find((budget) => budget.code === code);
             if (found) open(found);
@@ -52,6 +55,7 @@ export default function Budgets({ userName, selectBudget }) {
         if (!response.ok) return 'Could not create the budget';
         const budget = await response.json();
         setBudgets((list) => [...list, budget]);
+        notifier.broadcast(`${userName} created the ${budget.name} budget`);
         open(budget);
     }
 
@@ -63,6 +67,7 @@ export default function Budgets({ userName, selectBudget }) {
         if (!loaded.ok) return (await loaded.json()).msg;
         const found = await loaded.json();
         setBudgets((list) => (list.some((item) => item.code === code) ? list : [...list, found]));
+        notifier.broadcast(`${userName} joined the ${found.name} budget`);
         open(found);
     }
 
