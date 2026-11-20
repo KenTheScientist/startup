@@ -3,7 +3,7 @@ import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './app.css';
 
-import { BrowserRouter, Link, Route, Routes } from 'react-router-dom';
+import { BrowserRouter, Link, Route, Routes, useLocation } from 'react-router-dom';
 import Navigation from './widgets/navigation';
 import Login from './login/login';
 import Budgets from './budgets/budgets';
@@ -12,6 +12,12 @@ import Activity from './activity/activity';
 import Members from './members/members';
 import NotFound from './notFound';
 import LiveUpdates from './widgets/liveUpdates';
+
+function BudgetNav({ budget }) {
+    const path = useLocation().pathname;
+    if (!budget || path === '/' || path === '/budgets') return null;
+    return <Navigation budget={budget} />;
+}
 
 export default function App() {
     // Who is logged in. An empty string means nobody is logged in.
@@ -86,8 +92,7 @@ export default function App() {
             </header>
 
             <div className="layout">
-                {/* The sidebar only appears after a budget has been chosen. */}
-                {budget && <Navigation budget={budget} />}
+                <BudgetNav budget={budget} />
 
                 <Routes>
                     <Route path="/" element={<Login userName={userName} setUserName={setUserName} />} />
