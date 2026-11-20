@@ -2,9 +2,10 @@
 import React from 'react';
 import { cents, money } from '../budgets/money';
 import EnvelopePopup from './envelopePopup';
+import { notifier } from '../widgets/notifier';
 import './envelopes.css';
 
-export default function Envelopes({ budget }) {
+export default function Envelopes({ budget, userName }) {
     const [envelopes, setEnvelopes] = React.useState([]);
     // Which popup to open, and which envelope it applies to. Null when nothing was clicked.
     const [launch, setLaunch] = React.useState(null);
@@ -30,36 +31,40 @@ export default function Envelopes({ budget }) {
     }
 
     // Returns an error message, or nothing when the change is saved.
-    function create(name, capacity) {
+    async function create(name, capacity) {
         const duplicate = envelopes.some((envelope) => envelope.name.toLowerCase() === name.toLowerCase());
         if (duplicate) return 'An envelope with that name already exists';
         if (!(capacity > 0)) return 'Enter a capacity';
 
         const nextEnvelopes = [...envelopes, { name, balance: 0, capacity: cents(capacity) }];
-        return commit(nextEnvelopes, {
+        const error = await commit(nextEnvelopes, {
             type: 'Envelope',
             details: 'Created envelope',
             amount: cents(capacity),
             envelope: name,
         });
+        if (!error) notifier.broadcast(`${userName} created a ${name} envelope`);
+        return error;
     }
 
-    function fill(name, amount) {
+    async function fill(name, amount) {
         if (!(amount > 0)) return 'Enter an amount';
 
         const nextEnvelopes = envelopes.map((envelope) => {
             if (envelope.name !== name) return envelope;
             return { ...envelope, balance: cents(envelope.balance + amount) };
         });
-        return commit(nextEnvelopes, {
+        const error = await commit(nextEnvelopes, {
             type: 'Fill',
             details: 'Added funds',
             amount: cents(amount),
             envelope: name,
         });
+        if (!error) notifier.broadcast(`${userName} added ${money(cents(amount))} to the ${name} envelope`);
+        return error;
     }
 
-    function spend(label, name, amount) {
+    async function spend(label, name, amount) {
         const envelope = envelopes.find((item) => item.name === name);
         if (!envelope) return 'Pick an envelope';
         if (!(amount > 0)) return 'Enter an amount';
@@ -68,25 +73,29 @@ export default function Envelopes({ budget }) {
             if (item.name !== name) return item;
             return { ...item, balance: cents(item.balance - amount) };
         });
-        return commit(nextEnvelopes, {
+        const error = await commit(nextEnvelopes, {
             type: 'Expense',
             details: label,
             amount: cents(amount),
             envelope: name,
         });
+        if (!error) notifier.broadcast(`${userName} spent ${money(cents(amount))} on ${label} from ${name}`);
+        return error;
     }
 
-    function remove(name) {
+    async function remove(name) {
         const envelope = envelopes.find((item) => item.name === name);
         if (!envelope) return 'That envelope is already gone';
 
         const nextEnvelopes = envelopes.filter((item) => item.name !== name);
-        return commit(nextEnvelopes, {
+        const error = await commit(nextEnvelopes, {
             type: 'Delete',
             details: 'Deleted envelope',
             amount: cents(envelope.balance),
             envelope: name,
         });
+        if (!error) notifier.broadcast(`${userName} deleted the ${name} envelope`);
+        return error;
     }
 
     function ask(kind, envelopeName) {
