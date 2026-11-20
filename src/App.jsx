@@ -105,7 +105,7 @@ export default function App() {
             <footer id="site-footer">
                 <span>Project by Kenneth Thomson - <a href="https://github.com/KenTheScientist/startup">GitHub</a></span>
                 {euroRate && <span>1 USD = {euroRate} EUR</span>}
-                <div className={`dropup ${resetOpen ? 'show' : ''}`}>
+                <div hidden className={`dropup ${resetOpen ? 'show' : ''}`}>
                     <button type="button" className="btn btn-sm btn-outline-light" onClick={() => setResetOpen((open) => !open)}>Reset</button>
                     <ul className={`dropdown-menu dropdown-menu-end ${resetOpen ? 'show' : ''}`}>
                         <li><button type="button" className="dropdown-item" onClick={resetStorage}>Reset Local Storage</button></li>
